@@ -1,0 +1,156 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector, pgcrypto]
+}
+
+model Destination {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  city        String
+  country     String
+  continent   String
+  lat         Float
+  lng         Float
+  description String   @db.Text
+  imageUrl    String?  @map("image_url")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  weather   DestinationWeather[]
+  costs     DestinationCosts?
+  safety    DestinationSafety?
+  tags      DestinationTag[]
+  embedding DestinationEmbedding?
+  matches   SavedMatch[]
+
+  @@unique([city, country])
+  @@index([continent])
+  @@map("destinations")
+}
+
+model DestinationWeather {
+  id            String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  destinationId String @map("destination_id") @db.Uuid
+  month         Int
+  avgTempC      Float  @map("avg_temp_c")
+  avgRainfallMm Float  @map("avg_rainfall_mm")
+  sunshineHours Float  @map("sunshine_hours")
+
+  destination Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+
+  @@unique([destinationId, month])
+  @@map("destination_weather")
+}
+
+model DestinationCosts {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  destinationId   String   @unique @map("destination_id") @db.Uuid
+  dailyBudgetLow  Float    @map("daily_budget_low")
+  dailyBudgetMid  Float    @map("daily_budget_mid")
+  dailyBudgetHigh Float    @map("daily_budget_high")
+  currency        String   @default("USD")
+  lastUpdated     DateTime @map("last_updated")
+
+  destination Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+
+  @@map("destination_costs")
+}
+
+model DestinationSafety {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  destinationId String   @unique @map("destination_id") @db.Uuid
+  safetyScore   Int      @map("safety_score")
+  advisoryLevel String   @map("advisory_level")
+  source        String
+  lastUpdated   DateTime @map("last_updated")
+
+  destination Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+
+  @@map("destination_safety")
+}
+
+model DestinationTag {
+  id            String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  destinationId String @map("destination_id") @db.Uuid
+  tag           String
+
+  destination Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+
+  @@unique([destinationId, tag])
+  @@index([tag])
+  @@map("destination_tags")
+}
+
+model DestinationEmbedding {
+  id            String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  destinationId String                      @unique @map("destination_id") @db.Uuid
+  embedding     Unsupported("vector(1536)")?
+
+  destination Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+
+  @@map("destination_embeddings")
+}
+
+model User {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  clerkId   String   @unique @map("clerk_id")
+  email     String   @unique
+  firstName String?  @map("first_name")
+  lastName  String?  @map("last_name")
+  avatarUrl String?  @map("avatar_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  savedMatches  SavedMatch[]
+  preferences   UserPreferences?
+  searchHistory SearchHistory[]
+
+  @@map("users")
+}
+
+model SavedMatch {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId        String   @map("user_id") @db.Uuid
+  destinationId String   @map("destination_id") @db.Uuid
+  searchQuery   String   @map("search_query") @db.Text
+  matchScore    Float    @map("match_score")
+  savedAt       DateTime @default(now()) @map("saved_at")
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  destination Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, destinationId, searchQuery])
+  @@map("saved_matches")
+}
+
+model UserPreferences {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId         String   @unique @map("user_id") @db.Uuid
+  budgetLevel    String?  @map("budget_level")
+  tempPreference String?  @map("temp_preference")
+  safetyPriority String?  @map("safety_priority")
+  preferredVibes String[] @map("preferred_vibes")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model SearchHistory {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId          String   @map("user_id") @db.Uuid
+  query           String   @db.Text
+  extractedIntent Json?    @map("extracted_intent")
+  resultsCount    Int      @map("results_count")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt(sort: Desc)])
+  @@map("search_history")
+}

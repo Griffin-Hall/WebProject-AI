@@ -1,0 +1,16 @@
+{
+  "name": "GlobeSense",
+  "short_name": "GlobeSense",
+  "description": "AI-powered travel discovery. Find your perfect destination.",
+  "start_url": "/WebProject-AI/",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#1a5af5",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

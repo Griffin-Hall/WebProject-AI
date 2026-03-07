@@ -1,0 +1,442 @@
+[
+  {
+    "city": "Paris", "country": "France", "continent": "Europe", "lat": 48.8566, "lng": 2.3522,
+    "description": "The City of Light captivates with world-class art, iconic architecture, and exquisite cuisine. From the Eiffel Tower to charming cafe-lined boulevards, Paris defines romance and culture.",
+    "imageUrl": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800",
+    "tags": ["romantic", "cultural", "foodie", "historical", "artsy"],
+    "weather": [[4.5,51,2],[5.5,41,3],[9,47,4],[12,50,5],[16,63,6],[19,50,7],[21,63,7],[21,43,7],[17,54,5],[13,56,4],[8,51,2],[5,58,2]],
+    "costs": [60, 150, 400], "safety": [78, "low"]
+  },
+  {
+    "city": "Barcelona", "country": "Spain", "continent": "Europe", "lat": 41.3874, "lng": 2.1686,
+    "description": "A vibrant Mediterranean gem where Gaudi's fantastical architecture meets golden beaches and world-class nightlife. Barcelona pulses with creative energy, tapas culture, and endless sunshine.",
+    "imageUrl": "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800",
+    "tags": ["beach", "nightlife", "cultural", "foodie", "artsy", "urban"],
+    "weather": [[10,41,5],[11,29,6],[13,33,6],[15,46,7],[18,47,8],[22,25,9],[25,22,10],[25,44,9],[22,81,7],[18,91,6],[13,45,5],[10,38,5]],
+    "costs": [45, 120, 350], "safety": [75, "low"]
+  },
+  {
+    "city": "Rome", "country": "Italy", "continent": "Europe", "lat": 41.9028, "lng": 12.4964,
+    "description": "The Eternal City layers millennia of history beneath vibrant modern life. Ancient ruins, Renaissance art, and sublime Italian cuisine create an unmatched cultural experience.",
+    "imageUrl": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800",
+    "tags": ["historical", "cultural", "foodie", "romantic", "artsy"],
+    "weather": [[8,67,4],[9,62,4],[12,57,5],[14,65,6],[18,31,8],[23,16,9],[26,6,11],[26,21,10],[22,63,7],[18,94,6],[12,108,4],[9,81,3]],
+    "costs": [50, 130, 380], "safety": [74, "low"]
+  },
+  {
+    "city": "Amsterdam", "country": "Netherlands", "continent": "Europe", "lat": 52.3676, "lng": 4.9041,
+    "description": "A city of canals, cycling, and creative spirit. Amsterdam blends world-class museums, coffeehouse culture, and a famously open-minded atmosphere into one of Europe's most charming capitals.",
+    "imageUrl": "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=800",
+    "tags": ["cultural", "nightlife", "artsy", "urban", "eco-friendly"],
+    "weather": [[4,62,2],[4,43,3],[7,53,4],[10,40,5],[14,50,7],[16,60,7],[18,73,7],[18,78,6],[15,78,5],[11,75,3],[7,80,2],[4,75,1]],
+    "costs": [55, 140, 370], "safety": [82, "low"]
+  },
+  {
+    "city": "Prague", "country": "Czech Republic", "continent": "Europe", "lat": 50.0755, "lng": 14.4378,
+    "description": "A fairy-tale city of Gothic spires, Baroque palaces, and cobblestone streets. Prague offers incredible history and vibrant nightlife at remarkably affordable prices.",
+    "imageUrl": "https://images.unsplash.com/photo-1541849546-216549ae216d?w=800",
+    "tags": ["historical", "nightlife", "cultural", "backpacker", "romantic"],
+    "weather": [[0,20,2],[1,19,3],[5,22,4],[10,30,5],[15,55,7],[18,62,7],[20,58,7],[20,56,7],[15,33,5],[10,26,4],[4,25,2],[1,23,2]],
+    "costs": [30, 75, 250], "safety": [85, "low"]
+  },
+  {
+    "city": "Santorini", "country": "Greece", "continent": "Europe", "lat": 36.3932, "lng": 25.4615,
+    "description": "Iconic white-washed buildings cascade down volcanic cliffs above the deepest blue Aegean waters. Santorini is the ultimate romantic escape with breathtaking sunsets and Mediterranean cuisine.",
+    "imageUrl": "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800",
+    "tags": ["romantic", "beach", "luxury", "relaxation", "foodie"],
+    "weather": [[11,68,4],[11,42,5],[13,36,6],[16,16,8],[20,5,10],[25,1,12],[27,0,13],[27,0,12],[24,10,10],[20,26,7],[16,48,5],[12,68,4]],
+    "costs": [60, 160, 500], "safety": [80, "low"]
+  },
+  {
+    "city": "Reykjavik", "country": "Iceland", "continent": "Europe", "lat": 64.1466, "lng": -21.9426,
+    "description": "Gateway to otherworldly landscapes of glaciers, geysers, and the Northern Lights. Reykjavik combines raw natural beauty with a surprisingly vibrant arts and music scene.",
+    "imageUrl": "https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=800",
+    "tags": ["nature", "adventure", "off-the-beaten-path", "eco-friendly"],
+    "weather": [[-1,75,1],[0,72,2],[1,82,3],[3,58,4],[7,44,6],[10,50,6],[12,52,6],[11,62,5],[8,67,4],[4,86,2],[1,73,1],[0,79,0]],
+    "costs": [80, 200, 500], "safety": [93, "low"]
+  },
+  {
+    "city": "Lisbon", "country": "Portugal", "continent": "Europe", "lat": 38.7223, "lng": -9.1393,
+    "description": "Sun-drenched hills overlooking the Tagus River, adorned with colorful tiles and the melancholic sounds of Fado music. Lisbon delivers old-world charm with a modern creative edge.",
+    "imageUrl": "https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=800",
+    "tags": ["cultural", "foodie", "nightlife", "historical", "backpacker"],
+    "weather": [[12,100,5],[13,76,6],[15,43,7],[16,64,8],[18,39,9],[22,11,11],[25,3,12],[25,4,11],[23,26,9],[19,80,7],[15,107,5],[12,100,5]],
+    "costs": [35, 90, 280], "safety": [84, "low"]
+  },
+  {
+    "city": "Dubrovnik", "country": "Croatia", "continent": "Europe", "lat": 42.6507, "lng": 18.0944,
+    "description": "The Pearl of the Adriatic enchants with medieval walls, terracotta rooftops, and crystal-clear waters. Walk the same ancient streets that doubled as King's Landing in Game of Thrones.",
+    "imageUrl": "https://images.unsplash.com/photo-1555990793-da11153b2473?w=800",
+    "tags": ["historical", "beach", "cultural", "romantic", "luxury"],
+    "weather": [[9,95,4],[9,88,5],[12,83,5],[15,69,7],[19,55,8],[23,37,10],[26,24,11],[26,38,10],[22,70,8],[18,113,6],[13,131,4],[10,118,3]],
+    "costs": [45, 120, 350], "safety": [83, "low"]
+  },
+  {
+    "city": "Edinburgh", "country": "United Kingdom", "continent": "Europe", "lat": 55.9533, "lng": -3.1883,
+    "description": "A dramatic city of volcanic crags, medieval Old Town, and Georgian New Town elegance. Edinburgh blends Scottish history with world-famous festivals and a thriving food scene.",
+    "imageUrl": "https://images.unsplash.com/photo-1506377585622-bedcbb027afc?w=800",
+    "tags": ["historical", "cultural", "foodie", "artsy", "nature"],
+    "weather": [[4,55,2],[5,40,3],[7,51,4],[9,40,5],[12,49,6],[14,56,6],[16,65,5],[16,66,5],[13,61,4],[10,65,3],[7,54,2],[4,55,1]],
+    "costs": [50, 130, 350], "safety": [86, "low"]
+  },
+  {
+    "city": "Vienna", "country": "Austria", "continent": "Europe", "lat": 48.2082, "lng": 16.3738,
+    "description": "Imperial grandeur meets coffeehouse culture in this elegant capital. Vienna dazzles with palatial architecture, classical music heritage, and some of the finest pastries on Earth.",
+    "imageUrl": "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=800",
+    "tags": ["cultural", "historical", "foodie", "artsy", "luxury"],
+    "weather": [[1,38,2],[2,33,3],[7,44,4],[12,45,6],[17,62,7],[20,65,7],[22,63,8],[22,58,7],[17,50,6],[12,38,4],[6,45,2],[2,44,2]],
+    "costs": [50, 130, 380], "safety": [88, "low"]
+  },
+  {
+    "city": "Copenhagen", "country": "Denmark", "continent": "Europe", "lat": 55.6761, "lng": 12.5683,
+    "description": "The happiest city in the world charms with colorful Nyhavn harbor, innovative Nordic cuisine, and world-class design. Copenhagen embodies Scandinavian cool and sustainable living.",
+    "imageUrl": "https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800",
+    "tags": ["cultural", "foodie", "eco-friendly", "urban", "artsy"],
+    "weather": [[1,46,1],[1,30,2],[4,39,4],[8,34,6],[13,43,8],[16,47,8],[18,61,7],[18,58,7],[14,60,5],[10,55,3],[5,56,2],[2,56,1]],
+    "costs": [65, 170, 450], "safety": [90, "low"]
+  },
+  {
+    "city": "Istanbul", "country": "Turkey", "continent": "Europe", "lat": 41.0082, "lng": 28.9784,
+    "description": "Where East meets West across the Bosphorus strait. Istanbul enchants with the Blue Mosque, Grand Bazaar, and a culinary tradition that spans Ottoman, Mediterranean, and Middle Eastern flavors.",
+    "imageUrl": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800",
+    "tags": ["historical", "cultural", "foodie", "spiritual", "urban"],
+    "weather": [[6,99,3],[6,72,3],[8,64,4],[13,46,6],[18,30,8],[23,22,10],[25,15,11],[25,13,10],[21,28,8],[17,64,5],[12,101,3],[8,119,2]],
+    "costs": [25, 65, 220], "safety": [62, "medium"]
+  },
+  {
+    "city": "Interlaken", "country": "Switzerland", "continent": "Europe", "lat": 46.6863, "lng": 7.8632,
+    "description": "Nestled between two glacial lakes beneath the snow-capped Jungfrau massif. Interlaken is the adventure capital of Europe, offering paragliding, skiing, and jaw-dropping Alpine scenery.",
+    "imageUrl": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=800",
+    "tags": ["adventure", "mountain", "nature", "winter-sports", "luxury"],
+    "weather": [[-1,63,3],[1,53,4],[5,56,5],[9,71,6],[14,103,6],[17,119,6],[19,107,7],[18,117,7],[14,86,5],[10,62,4],[4,65,3],[0,65,2]],
+    "costs": [80, 200, 550], "safety": [92, "low"]
+  },
+  {
+    "city": "Amalfi Coast", "country": "Italy", "continent": "Europe", "lat": 40.6340, "lng": 14.6027,
+    "description": "Pastel villages cling to dramatic cliffs above the azure Mediterranean. The Amalfi Coast is a sun-soaked paradise of lemon groves, winding coastal roads, and sublime Italian cuisine.",
+    "imageUrl": "https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?w=800",
+    "tags": ["romantic", "beach", "luxury", "foodie", "relaxation"],
+    "weather": [[10,130,4],[10,98,4],[12,79,5],[15,72,6],[19,47,8],[23,27,9],[26,19,10],[26,30,10],[23,72,7],[18,128,5],[14,162,4],[11,137,3]],
+    "costs": [55, 150, 450], "safety": [76, "low"]
+  },
+  {
+    "city": "Tokyo", "country": "Japan", "continent": "Asia", "lat": 35.6762, "lng": 139.6503,
+    "description": "An electrifying fusion of ultramodern technology and ancient tradition. Tokyo dazzles with neon-lit streets, Michelin-starred ramen shops, serene temples, and the world's most efficient transit system.",
+    "imageUrl": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800",
+    "tags": ["cultural", "foodie", "urban", "historical", "artsy"],
+    "weather": [[6,52,6],[7,56,6],[10,118,6],[15,125,6],[20,138,6],[23,168,5],[27,154,5],[28,168,6],[24,210,5],[19,198,5],[14,93,5],[8,51,5]],
+    "costs": [55, 130, 400], "safety": [91, "low"]
+  },
+  {
+    "city": "Bali", "country": "Indonesia", "continent": "Asia", "lat": -8.3405, "lng": 115.0920,
+    "description": "A tropical paradise of terraced rice paddies, ancient temples, and world-class surf breaks. Bali blends spiritual Balinese culture with affordable luxury and breathtaking natural beauty.",
+    "imageUrl": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800",
+    "tags": ["spiritual", "beach", "nature", "relaxation", "backpacker", "foodie"],
+    "weather": [[27,345,6],[27,274,6],[27,234,7],[27,88,8],[27,93,8],[26,53,8],[26,55,8],[26,25,9],[26,47,8],[27,63,8],[27,179,7],[27,276,6]],
+    "costs": [20, 50, 200], "safety": [68, "low"]
+  },
+  {
+    "city": "Bangkok", "country": "Thailand", "continent": "Asia", "lat": 13.7563, "lng": 100.5018,
+    "description": "A sensory overload of golden temples, bustling night markets, and legendary street food. Bangkok is Southeast Asia's most dynamic city, where ancient traditions thrive alongside modern skylines.",
+    "imageUrl": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800",
+    "tags": ["cultural", "foodie", "nightlife", "backpacker", "spiritual", "urban"],
+    "weather": [[27,9,9],[28,30,8],[29,29,8],[30,65,8],[30,220,7],[29,149,6],[29,155,5],[29,197,5],[28,344,5],[28,242,6],[28,48,7],[27,10,8]],
+    "costs": [15, 40, 180], "safety": [65, "low"]
+  },
+  {
+    "city": "Seoul", "country": "South Korea", "continent": "Asia", "lat": 37.5665, "lng": 126.9780,
+    "description": "Where K-pop meets Confucian palaces. Seoul buzzes with cutting-edge technology, incredible Korean BBQ, vibrant nightlife districts, and a beauty and fashion scene that sets global trends.",
+    "imageUrl": "https://images.unsplash.com/photo-1546874177-9e664107314e?w=800",
+    "tags": ["cultural", "foodie", "nightlife", "urban", "artsy"],
+    "weather": [[-2,21,5],[-1,24,5],[5,46,6],[12,65,7],[17,106,7],[22,133,6],[25,395,4],[26,348,5],[22,169,6],[15,52,6],[7,53,5],[0,22,5]],
+    "costs": [40, 100, 300], "safety": [83, "low"]
+  },
+  {
+    "city": "Hanoi", "country": "Vietnam", "continent": "Asia", "lat": 21.0278, "lng": 105.8342,
+    "description": "A captivating blend of French colonial elegance and Vietnamese hustle. Hanoi enchants with its Old Quarter's labyrinthine streets, legendary pho, and serene Hoan Kiem Lake.",
+    "imageUrl": "https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?w=800",
+    "tags": ["cultural", "foodie", "historical", "backpacker", "off-the-beaten-path"],
+    "weather": [[17,19,2],[18,26,2],[21,44,2],[24,81,3],[28,196,5],[30,240,6],[30,288,6],[29,318,5],[28,265,5],[25,99,5],[22,43,4],[18,20,3]],
+    "costs": [12, 35, 150], "safety": [66, "low"]
+  },
+  {
+    "city": "Singapore", "country": "Singapore", "continent": "Asia", "lat": 1.3521, "lng": 103.8198,
+    "description": "A futuristic city-state of stunning architecture, lush gardens, and the world's best street food scene. Singapore seamlessly blends Chinese, Malay, Indian, and Western cultures.",
+    "imageUrl": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800",
+    "tags": ["foodie", "urban", "luxury", "cultural", "family-friendly"],
+    "weather": [[27,234,5],[27,162,6],[27,179,6],[28,166,6],[28,171,6],[28,162,6],[28,159,6],[28,175,6],[27,170,5],[27,194,5],[27,254,5],[27,269,4]],
+    "costs": [50, 130, 400], "safety": [95, "low"]
+  },
+  {
+    "city": "Kyoto", "country": "Japan", "continent": "Asia", "lat": 35.0116, "lng": 135.7681,
+    "description": "Japan's cultural heart, where thousands of ancient temples and shrines nestle among bamboo groves and cherry blossoms. Kyoto preserves the grace of traditional Japanese aesthetics.",
+    "imageUrl": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800",
+    "tags": ["cultural", "historical", "spiritual", "nature", "artsy"],
+    "weather": [[5,48,4],[5,68,4],[9,113,5],[15,116,5],[20,161,6],[24,214,5],[28,233,5],[29,132,6],[25,177,5],[19,121,5],[13,71,4],[7,48,4]],
+    "costs": [50, 120, 380], "safety": [92, "low"]
+  },
+  {
+    "city": "Maldives", "country": "Maldives", "continent": "Asia", "lat": 3.2028, "lng": 73.2207,
+    "description": "Crystal-clear turquoise waters lap against pristine white-sand beaches in this Indian Ocean paradise. The Maldives offers unparalleled luxury, world-class diving, and ultimate tropical escape.",
+    "imageUrl": "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800",
+    "tags": ["beach", "luxury", "romantic", "relaxation", "nature"],
+    "weather": [[28,114,8],[28,38,9],[29,74,8],[29,124,8],[29,219,7],[29,167,6],[29,150,6],[28,176,6],[28,199,6],[28,194,7],[28,231,7],[28,217,7]],
+    "costs": [100, 350, 1200], "safety": [72, "low"]
+  },
+  {
+    "city": "Dubai", "country": "UAE", "continent": "Asia", "lat": 25.2048, "lng": 55.2708,
+    "description": "A city of superlatives rising from the desert — tallest building, largest mall, most extravagant hotels. Dubai offers futuristic architecture, luxury shopping, and year-round sunshine.",
+    "imageUrl": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
+    "tags": ["luxury", "urban", "beach", "family-friendly"],
+    "weather": [[19,11,8],[20,36,8],[23,22,8],[27,8,9],[31,0,11],[34,0,12],[36,0,11],[36,0,10],[33,0,10],[29,1,10],[25,3,9],[21,16,8]],
+    "costs": [60, 180, 600], "safety": [88, "low"]
+  },
+  {
+    "city": "Goa", "country": "India", "continent": "Asia", "lat": 15.2993, "lng": 74.1240,
+    "description": "India's beach paradise blends golden sands with Portuguese colonial heritage. Goa offers everything from tranquil yoga retreats and spice plantations to lively beach parties and seafood feasts.",
+    "imageUrl": "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
+    "tags": ["beach", "party", "backpacker", "relaxation", "spiritual"],
+    "weather": [[26,0,10],[27,0,10],[28,1,10],[29,12,10],[30,113,8],[28,580,4],[27,640,3],[27,475,3],[27,277,5],[28,125,7],[28,17,9],[27,2,10]],
+    "costs": [12, 30, 120], "safety": [60, "medium"]
+  },
+  {
+    "city": "Kathmandu", "country": "Nepal", "continent": "Asia", "lat": 27.7172, "lng": 85.3240,
+    "description": "Gateway to the Himalayas and a spiritual crossroads of Hindu and Buddhist traditions. Kathmandu's ancient temples, vibrant markets, and mountain vistas create an unforgettable experience.",
+    "imageUrl": "https://images.unsplash.com/photo-1558799401-1dcba79834c2?w=800",
+    "tags": ["spiritual", "adventure", "mountain", "cultural", "backpacker", "off-the-beaten-path"],
+    "weather": [[10,15,6],[13,21,7],[17,34,7],[20,53,7],[23,105,7],[24,260,5],[24,363,3],[24,310,4],[23,200,5],[20,51,7],[15,8,8],[11,3,7]],
+    "costs": [10, 25, 100], "safety": [55, "medium"]
+  },
+  {
+    "city": "Chiang Mai", "country": "Thailand", "continent": "Asia", "lat": 18.7883, "lng": 98.9853,
+    "description": "A laid-back northern Thai city surrounded by misty mountains and over 300 ancient temples. Chiang Mai draws digital nomads, foodies, and wellness seekers with its low cost and high quality of life.",
+    "imageUrl": "https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=800",
+    "tags": ["cultural", "foodie", "spiritual", "backpacker", "nature", "relaxation"],
+    "weather": [[21,7,9],[23,5,9],[26,16,8],[28,50,8],[27,158,7],[26,132,5],[26,160,5],[26,215,5],[25,228,5],[25,122,6],[23,53,8],[21,15,9]],
+    "costs": [12, 30, 120], "safety": [70, "low"]
+  },
+  {
+    "city": "Marrakech", "country": "Morocco", "continent": "Africa", "lat": 31.6295, "lng": -7.9811,
+    "description": "A sensory whirlwind of spice-scented souks, ornate palaces, and the call to prayer echoing over terracotta rooftops. Marrakech transports you to a world of North African magic and hospitality.",
+    "imageUrl": "https://images.unsplash.com/photo-1597212618440-806262de4f6b?w=800",
+    "tags": ["cultural", "historical", "foodie", "artsy", "spiritual"],
+    "weather": [[12,24,7],[14,28,7],[16,31,8],[18,31,8],[21,15,10],[25,4,11],[29,1,12],[29,3,11],[26,13,9],[21,24,8],[16,31,7],[13,25,7]],
+    "costs": [20, 55, 200], "safety": [58, "medium"]
+  },
+  {
+    "city": "Cape Town", "country": "South Africa", "continent": "Africa", "lat": -33.9249, "lng": 18.4241,
+    "description": "Where Table Mountain meets the Atlantic Ocean. Cape Town stuns with dramatic landscapes, world-class wineries, vibrant culture, and some of the continent's best beaches and cuisine.",
+    "imageUrl": "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800",
+    "tags": ["nature", "adventure", "beach", "foodie", "cultural", "urban"],
+    "weather": [[21,15,11],[21,17,10],[20,20,9],[17,41,7],[15,69,6],[13,93,5],[12,82,6],[13,77,6],[14,40,7],[16,30,8],[18,14,10],[20,17,10]],
+    "costs": [25, 65, 220], "safety": [48, "medium"]
+  },
+  {
+    "city": "Zanzibar", "country": "Tanzania", "continent": "Africa", "lat": -6.1659, "lng": 39.1989,
+    "description": "Spice Island paradise with turquoise waters, white-sand beaches, and the historic Stone Town labyrinth. Zanzibar blends Swahili, Arab, and Indian influences into a tropical cultural mosaic.",
+    "imageUrl": "https://images.unsplash.com/photo-1548939740-fb1cbbcd8ff7?w=800",
+    "tags": ["beach", "cultural", "relaxation", "off-the-beaten-path", "historical"],
+    "weather": [[28,66,8],[28,54,8],[28,140,7],[27,320,5],[26,195,7],[25,40,8],[24,25,8],[25,22,8],[25,31,8],[26,75,8],[27,195,7],[28,130,7]],
+    "costs": [20, 55, 200], "safety": [56, "medium"]
+  },
+  {
+    "city": "Nairobi", "country": "Kenya", "continent": "Africa", "lat": -1.2921, "lng": 36.8219,
+    "description": "The safari capital of the world, where you can spot lions in a national park within city limits. Nairobi is East Africa's vibrant hub for wildlife, culture, and innovation.",
+    "imageUrl": "https://images.unsplash.com/photo-1611348524140-53c9a25263d6?w=800",
+    "tags": ["nature", "adventure", "cultural", "off-the-beaten-path"],
+    "weather": [[19,38,8],[20,36,8],[21,75,7],[20,185,6],[18,135,6],[17,35,6],[16,15,5],[17,23,6],[19,21,7],[20,53,7],[19,109,6],[19,86,7]],
+    "costs": [20, 50, 180], "safety": [42, "medium"]
+  },
+  {
+    "city": "Cairo", "country": "Egypt", "continent": "Africa", "lat": 30.0444, "lng": 31.2357,
+    "description": "Stand before the last surviving Wonder of the Ancient World. Cairo's pyramids, the Sphinx, and the Egyptian Museum house treasures spanning five millennia of civilization.",
+    "imageUrl": "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?w=800",
+    "tags": ["historical", "cultural", "spiritual", "off-the-beaten-path"],
+    "weather": [[14,5,7],[16,4,8],[18,4,8],[22,1,9],[26,1,10],[28,0,12],[29,0,12],[29,0,11],[27,0,10],[24,1,9],[19,3,8],[15,6,7]],
+    "costs": [15, 40, 150], "safety": [50, "medium"]
+  },
+  {
+    "city": "Livingstone", "country": "Zambia", "continent": "Africa", "lat": -17.8519, "lng": 25.8600,
+    "description": "Home to the thundering Victoria Falls, one of the Seven Natural Wonders of the World. Livingstone offers heart-pounding adventure with bungee jumping, white-water rafting, and safari experiences.",
+    "imageUrl": "https://images.unsplash.com/photo-1534299190-23cc82e17617?w=800",
+    "tags": ["adventure", "nature", "off-the-beaten-path"],
+    "weather": [[22,204,5],[22,181,5],[21,86,7],[19,18,9],[16,3,9],[13,0,9],[13,0,9],[16,0,10],[21,1,10],[24,15,9],[23,75,7],[22,150,6]],
+    "costs": [25, 70, 250], "safety": [52, "medium"]
+  },
+  {
+    "city": "New York", "country": "United States", "continent": "North America", "lat": 40.7128, "lng": -74.0060,
+    "description": "The city that never sleeps pulses with Broadway shows, world-class museums, iconic skylines, and a food scene representing every cuisine on Earth. New York is energy personified.",
+    "imageUrl": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800",
+    "tags": ["urban", "cultural", "foodie", "nightlife", "artsy"],
+    "weather": [[1,79,5],[2,74,6],[6,99,7],[12,99,7],[18,106,8],[23,112,9],[26,117,9],[25,113,8],[21,96,7],[15,89,6],[9,80,5],[3,87,5]],
+    "costs": [70, 200, 600], "safety": [73, "low"]
+  },
+  {
+    "city": "Cancun", "country": "Mexico", "continent": "North America", "lat": 21.1619, "lng": -86.8515,
+    "description": "Caribbean turquoise waters meet ancient Mayan ruins. Cancun delivers world-class beaches, vibrant nightlife, and easy access to cenotes, jungle adventures, and archaeological wonders.",
+    "imageUrl": "https://images.unsplash.com/photo-1510097467424-192d713fd8b2?w=800",
+    "tags": ["beach", "party", "nightlife", "adventure", "historical"],
+    "weather": [[24,57,7],[25,41,8],[26,30,8],[27,43,8],[28,100,8],[28,166,7],[28,89,8],[28,102,8],[28,201,6],[27,203,6],[26,70,7],[25,66,7]],
+    "costs": [30, 80, 300], "safety": [55, "medium"]
+  },
+  {
+    "city": "Vancouver", "country": "Canada", "continent": "North America", "lat": 49.2827, "lng": -123.1207,
+    "description": "Where mountains meet the Pacific in one of the world's most livable cities. Vancouver offers skiing, beaches, rainforest trails, and an incredible Asian-fusion food scene — all within minutes.",
+    "imageUrl": "https://images.unsplash.com/photo-1559511260-66a68e7e9a09?w=800",
+    "tags": ["nature", "urban", "foodie", "eco-friendly", "adventure", "mountain"],
+    "weather": [[4,154,2],[5,107,3],[7,101,4],[10,68,6],[13,55,7],[16,45,7],[18,36,9],[18,37,8],[15,51,6],[10,112,4],[6,170,2],[3,162,2]],
+    "costs": [50, 130, 380], "safety": [87, "low"]
+  },
+  {
+    "city": "Havana", "country": "Cuba", "continent": "North America", "lat": 23.1136, "lng": -82.3666,
+    "description": "Frozen in time with pastel-colored colonial buildings and 1950s American cars. Havana pulses with salsa music, rum, revolutionary history, and genuine warmth that defines Cuban culture.",
+    "imageUrl": "https://images.unsplash.com/photo-1500759285222-a95626b934cb?w=800",
+    "tags": ["cultural", "historical", "nightlife", "off-the-beaten-path", "artsy"],
+    "weather": [[22,64,6],[22,46,7],[23,46,7],[25,54,7],[26,98,6],[27,165,6],[28,106,7],[28,100,7],[27,144,6],[26,173,5],[24,79,6],[22,58,6]],
+    "costs": [20, 50, 180], "safety": [58, "medium"]
+  },
+  {
+    "city": "San Jose", "country": "Costa Rica", "continent": "North America", "lat": 9.9281, "lng": -84.0907,
+    "description": "Gateway to one of the planet's most biodiverse countries. Costa Rica offers cloud forests, volcanic hot springs, zip-lining through jungle canopies, and a commitment to eco-tourism.",
+    "imageUrl": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800",
+    "tags": ["nature", "adventure", "eco-friendly", "family-friendly", "relaxation"],
+    "weather": [[20,5,7],[20,5,7],[21,10,7],[22,46,6],[22,229,5],[22,241,4],[21,211,4],[21,241,4],[22,305,4],[21,300,4],[21,145,5],[20,41,6]],
+    "costs": [25, 70, 250], "safety": [63, "low"]
+  },
+  {
+    "city": "Banff", "country": "Canada", "continent": "North America", "lat": 51.1784, "lng": -115.5708,
+    "description": "Turquoise glacial lakes and towering Rocky Mountain peaks create one of the most photographed landscapes on Earth. Banff is a year-round paradise for hikers, skiers, and nature lovers.",
+    "imageUrl": "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800",
+    "tags": ["nature", "mountain", "adventure", "winter-sports", "eco-friendly"],
+    "weather": [[-10,25,3],[-7,18,4],[-3,17,5],[3,22,6],[8,45,7],[12,58,7],[16,39,9],[15,42,8],[10,35,6],[5,19,5],[-3,18,3],[-8,26,3]],
+    "costs": [50, 140, 400], "safety": [90, "low"]
+  },
+  {
+    "city": "Mexico City", "country": "Mexico", "continent": "North America", "lat": 19.4326, "lng": -99.1332,
+    "description": "One of the world's great megacities, bursting with Aztec history, Diego Rivera murals, and a food scene that rivals any global capital. Mexico City is culture, chaos, and charm in equal measure.",
+    "imageUrl": "https://images.unsplash.com/photo-1585464231875-d9ef1f5ad396?w=800",
+    "tags": ["cultural", "foodie", "historical", "artsy", "urban"],
+    "weather": [[14,8,7],[16,5,7],[18,10,7],[19,20,7],[19,45,6],[18,135,5],[17,155,5],[17,152,5],[17,130,5],[16,51,5],[15,13,6],[14,6,7]],
+    "costs": [20, 55, 200], "safety": [52, "medium"]
+  },
+  {
+    "city": "Tulum", "country": "Mexico", "continent": "North America", "lat": 20.2114, "lng": -87.4654,
+    "description": "Bohemian-chic beach town where ancient Mayan clifftop ruins overlook the Caribbean Sea. Tulum attracts yoga practitioners, eco-conscious travelers, and anyone seeking tropical serenity.",
+    "imageUrl": "https://images.unsplash.com/photo-1682687982501-1e58ab814714?w=800",
+    "tags": ["beach", "relaxation", "spiritual", "eco-friendly", "backpacker"],
+    "weather": [[24,58,7],[25,36,8],[26,24,8],[27,36,8],[28,87,8],[28,172,7],[28,76,8],[28,89,8],[28,215,6],[27,177,6],[26,66,7],[25,65,7]],
+    "costs": [30, 80, 300], "safety": [54, "medium"]
+  },
+  {
+    "city": "Buenos Aires", "country": "Argentina", "continent": "South America", "lat": -34.6037, "lng": -58.3816,
+    "description": "The Paris of South America seduces with passionate tango, sizzling steakhouses, and vibrant neighborhoods. Buenos Aires is a cultural powerhouse with European elegance and Latin American fire.",
+    "imageUrl": "https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=800",
+    "tags": ["cultural", "foodie", "nightlife", "artsy", "urban"],
+    "weather": [[25,100,9],[24,100,8],[22,110,7],[18,86,6],[14,73,5],[11,57,4],[11,56,5],[13,61,5],[15,73,6],[18,119,7],[21,84,8],[24,85,9]],
+    "costs": [20, 55, 180], "safety": [55, "medium"]
+  },
+  {
+    "city": "Rio de Janeiro", "country": "Brazil", "continent": "South America", "lat": -22.9068, "lng": -43.1729,
+    "description": "Christ the Redeemer watches over golden beaches, lush mountains, and a city that lives for samba, Carnival, and the joy of the carioca lifestyle. Rio is beauty, rhythm, and pure energy.",
+    "imageUrl": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800",
+    "tags": ["beach", "party", "cultural", "nature", "adventure"],
+    "weather": [[27,137,7],[27,130,7],[27,135,7],[25,94,6],[23,73,6],[22,43,6],[21,41,7],[22,44,7],[22,66,5],[23,87,5],[24,96,5],[25,137,6]],
+    "costs": [25, 70, 250], "safety": [40, "high"]
+  },
+  {
+    "city": "Medellin", "country": "Colombia", "continent": "South America", "lat": 6.2442, "lng": -75.5812,
+    "description": "The City of Eternal Spring has transformed from troubled past to innovative future. Medellin delights with perfect weather year-round, vibrant street art, and warm paisa hospitality.",
+    "imageUrl": "https://images.unsplash.com/photo-1568625365131-079e026a927d?w=800",
+    "tags": ["urban", "cultural", "backpacker", "nightlife", "artsy", "off-the-beaten-path"],
+    "weather": [[22,55,5],[22,73,5],[22,107,5],[21,178,4],[21,192,4],[22,155,5],[23,108,6],[22,154,5],[21,178,4],[21,208,4],[21,146,4],[21,81,5]],
+    "costs": [15, 40, 150], "safety": [48, "medium"]
+  },
+  {
+    "city": "Cusco", "country": "Peru", "continent": "South America", "lat": -13.5319, "lng": -71.9675,
+    "description": "Ancient Inca capital perched high in the Andes, gateway to the legendary Machu Picchu. Cusco's cobblestone streets, Spanish colonial churches, and living indigenous culture create a profound travel experience.",
+    "imageUrl": "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800",
+    "tags": ["historical", "cultural", "adventure", "mountain", "spiritual", "off-the-beaten-path"],
+    "weather": [[12,145,5],[12,123,5],[12,98,6],[11,43,7],[10,8,8],[8,2,8],[8,4,8],[9,8,8],[11,24,7],[12,56,7],[13,69,6],[12,112,5]],
+    "costs": [15, 40, 150], "safety": [55, "medium"]
+  },
+  {
+    "city": "Cartagena", "country": "Colombia", "continent": "South America", "lat": 10.3910, "lng": -75.5364,
+    "description": "A Caribbean jewel of colorful colonial architecture, bougainvillea-draped balconies, and pulsing Afro-Caribbean rhythms. Cartagena's old walled city is a UNESCO World Heritage treasure.",
+    "imageUrl": "https://images.unsplash.com/photo-1583531172005-814549820450?w=800",
+    "tags": ["historical", "beach", "cultural", "romantic", "nightlife"],
+    "weather": [[27,1,9],[27,0,9],[27,1,9],[28,28,8],[28,92,7],[28,99,7],[28,83,8],[28,109,7],[28,132,6],[27,179,6],[27,98,7],[27,22,8]],
+    "costs": [20, 55, 200], "safety": [50, "medium"]
+  },
+  {
+    "city": "El Calafate", "country": "Argentina", "continent": "South America", "lat": -50.3400, "lng": -72.2646,
+    "description": "Gateway to the awe-inspiring Perito Moreno Glacier and Los Glaciares National Park. El Calafate offers raw Patagonian beauty with turquoise lakes, rugged mountains, and pristine wilderness.",
+    "imageUrl": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800",
+    "tags": ["nature", "adventure", "off-the-beaten-path", "mountain", "eco-friendly"],
+    "weather": [[13,17,10],[12,14,8],[10,23,6],[7,30,5],[3,29,3],[1,20,3],[0,22,3],[3,19,4],[6,15,5],[9,14,7],[11,14,8],[12,17,9]],
+    "costs": [35, 90, 280], "safety": [65, "low"]
+  },
+  {
+    "city": "Bogota", "country": "Colombia", "continent": "South America", "lat": 4.7110, "lng": -74.0721,
+    "description": "A high-altitude capital buzzing with street art, craft beer, and world-class museums. Bogota's La Candelaria neighborhood and surrounding Andean landscapes reveal Colombia's creative renaissance.",
+    "imageUrl": "https://images.unsplash.com/photo-1576022162028-0af289747e66?w=800",
+    "tags": ["cultural", "artsy", "urban", "foodie", "off-the-beaten-path"],
+    "weather": [[14,33,5],[14,47,4],[15,69,4],[14,114,4],[14,90,4],[14,53,4],[13,37,4],[14,40,4],[14,61,4],[14,113,4],[14,94,4],[14,53,5]],
+    "costs": [15, 40, 150], "safety": [45, "medium"]
+  },
+  {
+    "city": "Sydney", "country": "Australia", "continent": "Oceania", "lat": -33.8688, "lng": 151.2093,
+    "description": "Harbor city icon defined by the Opera House, the Harbour Bridge, and golden surf beaches. Sydney delivers outdoor lifestyle, multicultural cuisine, and a relaxed cosmopolitan energy.",
+    "imageUrl": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800",
+    "tags": ["beach", "urban", "cultural", "nature", "foodie", "family-friendly"],
+    "weather": [[23,91,8],[23,118,7],[22,117,7],[19,114,6],[16,100,6],[14,128,5],[13,66,6],[14,76,7],[17,62,7],[19,64,7],[20,83,7],[22,73,8]],
+    "costs": [55, 150, 420], "safety": [85, "low"]
+  },
+  {
+    "city": "Queenstown", "country": "New Zealand", "continent": "Oceania", "lat": -45.0312, "lng": 168.6626,
+    "description": "The adventure capital of the world, cradled by the Remarkables mountain range and Lake Wakatipu. Queenstown is where bungee jumping was born and every adrenaline sport thrives.",
+    "imageUrl": "https://images.unsplash.com/photo-1589871973318-9ca1258faa3d?w=800",
+    "tags": ["adventure", "mountain", "nature", "winter-sports", "luxury"],
+    "weather": [[16,66,7],[16,56,6],[13,52,5],[10,61,4],[6,63,3],[3,48,3],[2,46,3],[5,51,4],[8,49,5],[11,58,6],[13,52,6],[15,64,7]],
+    "costs": [50, 140, 400], "safety": [89, "low"]
+  },
+  {
+    "city": "Nadi", "country": "Fiji", "continent": "Oceania", "lat": -17.7765, "lng": 177.9646,
+    "description": "Gateway to Fiji's 333 islands of palm-fringed beaches, coral reefs, and warm Fijian hospitality. Nadi opens the door to one of the South Pacific's most welcoming tropical paradises.",
+    "imageUrl": "https://images.unsplash.com/photo-1575988277904-ff07f56ab9d1?w=800",
+    "tags": ["beach", "relaxation", "nature", "romantic", "family-friendly"],
+    "weather": [[27,288,6],[27,279,6],[27,312,6],[26,162,6],[25,78,6],[24,59,7],[23,38,7],[23,38,7],[24,55,7],[25,82,7],[26,133,7],[27,225,6]],
+    "costs": [30, 80, 350], "safety": [70, "low"]
+  },
+  {
+    "city": "Melbourne", "country": "Australia", "continent": "Oceania", "lat": -37.8136, "lng": 144.9631,
+    "description": "Australia's cultural capital bursts with street art laneways, world-class coffee, live music, and sporting events. Melbourne is consistently ranked among the world's most livable cities.",
+    "imageUrl": "https://images.unsplash.com/photo-1514395462725-fb4566210144?w=800",
+    "tags": ["urban", "cultural", "foodie", "artsy", "nightlife"],
+    "weather": [[21,48,8],[21,46,7],[19,50,6],[16,57,5],[13,56,4],[11,50,4],[10,48,4],[11,50,4],[13,58,5],[15,67,6],[17,60,7],[19,59,7]],
+    "costs": [50, 140, 380], "safety": [86, "low"]
+  },
+  {
+    "city": "Bora Bora", "country": "French Polynesia", "continent": "Oceania", "lat": -16.5004, "lng": -151.7415,
+    "description": "The most romantic island on Earth, where overwater bungalows float above impossibly clear lagoons. Bora Bora's volcanic peaks and coral reefs create the ultimate luxury tropical escape.",
+    "imageUrl": "https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=800",
+    "tags": ["luxury", "romantic", "beach", "relaxation", "nature"],
+    "weather": [[28,260,6],[28,230,6],[28,200,6],[28,140,6],[27,100,6],[26,60,6],[25,40,7],[26,40,7],[26,50,7],[27,100,7],[27,170,6],[28,240,6]],
+    "costs": [120, 400, 1500], "safety": [78, "low"]
+  },
+  {
+    "city": "Auckland", "country": "New Zealand", "continent": "Oceania", "lat": -36.8509, "lng": 174.7645,
+    "description": "The City of Sails stretches between two harbors, with volcanic cones, black-sand beaches, and world-class wine regions just minutes away. Auckland is New Zealand's multicultural gateway.",
+    "imageUrl": "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=800",
+    "tags": ["nature", "urban", "adventure", "foodie", "family-friendly"],
+    "weather": [[20,74,8],[20,66,7],[19,75,6],[16,99,5],[14,112,4],[12,126,4],[11,132,4],[12,117,4],[13,98,5],[15,81,6],[17,85,7],[19,79,7]],
+    "costs": [45, 120, 350], "safety": [88, "low"]
+  },
+  {
+    "city": "Hobart", "country": "Australia", "continent": "Oceania", "lat": -42.8821, "lng": 147.3272,
+    "description": "Tasmania's charming capital sits beneath the dramatic kunanyi/Mount Wellington. Hobart offers pristine wilderness, farm-to-table cuisine, MONA's provocative art, and some of Australia's best whisky.",
+    "imageUrl": "https://images.unsplash.com/photo-1589473463626-bbed47d2f0e9?w=800",
+    "tags": ["nature", "foodie", "artsy", "off-the-beaten-path", "eco-friendly"],
+    "weather": [[17,40,8],[17,34,7],[15,41,6],[13,46,5],[10,37,4],[8,43,3],[8,48,4],[9,44,4],[11,46,5],[13,52,6],[14,49,6],[16,45,7]],
+    "costs": [45, 120, 350], "safety": [87, "low"]
+  }
+]
