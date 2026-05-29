@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
-# Deploys client to GitHub Pages on push to main
+# Deploys client to GitHub Pages on push to master
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 
 permissions:
