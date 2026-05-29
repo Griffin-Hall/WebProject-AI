@@ -1,5 +1,5 @@
 {
-  "name": "@voyage-matcher/client",
+  "name": "@globesense/client",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -13,7 +13,7 @@
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.17.14",
     "@tanstack/react-query": "^5.56.0",
-    "@voyage-matcher/shared": "workspace:*",
+    "@globesense/shared": "workspace:*",
     "clsx": "^2.1.0",
     "framer-motion": "^11.5.0",
     "lucide-react": "^0.441.0",

@@ -3,7 +3,7 @@
 ## Current Status (as of last commit 2b29a01)
 
 ### ✅ GitHub Pages (Frontend)
-- **URL:** https://griffin-hall.github.io/WebProject-AI/
+- **URL:** https://griffin-hall.github.io/GlobeSense/
 - **Status:** ✅ Deployed and updated
 - **Features:** All UI updates live (particles, flight path, Ollama status indicator)
 
@@ -99,7 +99,7 @@ Deploy your server + Ollama to a VPS/cloud instance:
 
 ### Option 4: Use Render's Fallback (Current State)
 
-Keep using https://griffin-hall.github.io/WebProject-AI/ as-is:
+Keep using https://griffin-hall.github.io/GlobeSense/ as-is:
 - Frontend from GitHub Pages ✅
 - API from Render ✅
 - **No Ollama** (uses keyword fallback) ⚠️
@@ -112,7 +112,7 @@ Search still works, but uses basic keyword matching instead of AI.
 
 ### Test GitHub Pages Site
 ```bash
-curl https://griffin-hall.github.io/WebProject-AI/
+curl https://griffin-hall.github.io/GlobeSense/
 # Returns HTML (static site)
 ```
 
@@ -157,7 +157,7 @@ localhost:5173  →  localhost:3001  →  localhost:11434 (Ollama)
 
 ### For Demo (show others):
 ```
-https://griffin-hall.github.io/WebProject-AI/
+https://griffin-hall.github.io/GlobeSense/
    ↓
 https://webproject-ai.onrender.com
    ↓
@@ -170,7 +170,7 @@ Keyword-based extraction (no Ollama)
 
 | What | Status | How to Access |
 |------|--------|---------------|
-| GitHub Pages UI | ✅ Live | https://griffin-hall.github.io/WebProject-AI/ |
+| GitHub Pages UI | ✅ Live | https://griffin-hall.github.io/GlobeSense/ |
 | Render API | ✅ Live | https://webproject-ai.onrender.com |
 | Your Ollama | ✅ Running | http://127.0.0.1:11434 (local only) |
 | **Full Local Stack** | ⏸️ Needs setup | `npm run dev` in both client & server |

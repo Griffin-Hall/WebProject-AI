@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 import { CloudRain, Sun, Thermometer } from 'lucide-react';
 import { MONTH_NAMES } from '@/lib/constants';
-import type { DestinationWeather } from '@voyage-matcher/shared';
+import type { DestinationWeather } from '@globesense/shared';
 
 interface WeatherChartProps {
   weather: DestinationWeather[];

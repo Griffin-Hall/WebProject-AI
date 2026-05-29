@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/lib/api';
-import type { PaginatedResponse, DestinationDetail, DestinationSummary } from '@voyage-matcher/shared';
+import type { PaginatedResponse, DestinationDetail, DestinationSummary } from '@globesense/shared';
 
 interface UseDestinationsParams {
   page?: number;

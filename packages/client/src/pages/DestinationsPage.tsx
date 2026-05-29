@@ -4,7 +4,7 @@ import { Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useDestinations } from '@/hooks/useDestinations';
 import { DestinationCard } from '@/components/destination/DestinationCard';
 import { Button, Skeleton } from '@/components/ui';
-import { CONTINENTS } from '@voyage-matcher/shared';
+import { CONTINENTS } from '@globesense/shared';
 import { cn } from '@/lib/utils';
 
 /**

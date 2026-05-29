@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Bot, Loader2, Send, Sparkles, User } from 'lucide-react';
 import Markdown from 'react-markdown';
-import type { DestinationDetail } from '@voyage-matcher/shared';
+import type { DestinationDetail } from '@globesense/shared';
 import { cn } from '@/lib/utils';
 import { getAIHeaders, useAIConfig, PROVIDER_LABELS } from '@/hooks/useAIConfig';
 

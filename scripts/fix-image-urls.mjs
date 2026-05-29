@@ -183,7 +183,7 @@ function toThumb960(url) {
   }
   // Full URL → thumb URL
   const m = url.match(
-    /^(https:\/\/upload\.wikimedia\.org\/wikipedia\/(?:commons|en))\/([\ da-f]\/[\ da-f]{2})\/(.+)$/i
+    /^(https:\/\/upload\.wikimedia\.org\/wikipedia\/(?:commons|en))\/([0-9a-f]\/[0-9a-f]{2})\/(.+)$/i
   );
   if (m) {
     const [, base, hash, filename] = m;

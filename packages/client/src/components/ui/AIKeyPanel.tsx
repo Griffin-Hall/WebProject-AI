@@ -201,7 +201,7 @@ function AIKeyPanel({ onClose }: { onClose: () => void }) {
             </button>
           </div>
           <p className="mt-1 text-[10px] text-slate-600">
-            Your key is stored in your browser only — never sent to our servers for storage.
+            Stored locally and sent only to proxy AI requests; never saved server-side.
           </p>
         </div>
 

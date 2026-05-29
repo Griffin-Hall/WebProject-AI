@@ -1,8 +1,8 @@
-# Voyage Matcher - AI Coding Agent Guide
+# GlobeSense - AI Coding Agent Guide
 
 ## Project Overview
 
-Voyage Matcher (codename: GlobeSense) is an AI-powered travel discovery and matching platform. It helps users find their ideal travel destinations by understanding natural language queries and matching them against a curated database of destinations using AI-driven intent extraction and multi-dimensional scoring.
+GlobeSense is an AI-powered travel discovery and matching platform. It helps users find their ideal travel destinations by understanding natural language queries and matching them against a curated database of destinations using AI-driven intent extraction and multi-dimensional scoring.
 
 ### Key Features
 - **Natural Language Search**: Users can describe their ideal vacation in plain English (e.g., "cheap warm beach vacation in July")
@@ -28,7 +28,7 @@ Voyage Matcher (codename: GlobeSense) is an AI-powered travel discovery and matc
 This is a monorepo managed with pnpm workspaces:
 
 ```
-WebProject-AI/
+GlobeSense/
 ├── packages/
 │   ├── client/          # React frontend (Vite)
 │   ├── server/          # Express backend API
@@ -41,19 +41,19 @@ WebProject-AI/
 
 ### Package Details
 
-#### `@voyage-matcher/client`
+#### `@globesense/client`
 - **Entry**: `src/main.tsx`
 - **Build Output**: `dist/` (static files)
 - **Dev Server**: http://localhost:5173
 - **Key Dependencies**: React Router, TanStack Query, Three.js (globe visualization), Recharts
 
-#### `@voyage-matcher/server`
+#### `@globesense/server`
 - **Entry**: `src/index.ts`
 - **Build Output**: `dist/` (JavaScript files)
 - **Dev Server**: http://localhost:3001
 - **Key Dependencies**: Express, Prisma, Zod, Pino (logging), OpenAI SDK
 
-#### `@voyage-matcher/shared`
+#### `@globesense/shared`
 - **Purpose**: Shared TypeScript types, interfaces, and constants
 - **Consumed by**: Both client and server via workspace dependency
 - **Key Exports**: Destination types, search types, scoring constants, vibe definitions
@@ -266,7 +266,7 @@ import express from 'express';
 import { z } from 'zod';
 
 // Internal workspace packages
-import type { Destination } from '@voyage-matcher/shared';
+import type { Destination } from '@globesense/shared';
 
 // Internal modules (use .js extension for ESM)
 import { logger } from '../utils/logger.js';
@@ -305,7 +305,7 @@ curl http://localhost:3001/api/destinations
 ### Frontend (GitHub Pages)
 
 The client is deployed to GitHub Pages at:
-- **URL**: https://griffin-hall.github.io/WebProject-AI/
+- **URL**: https://griffin-hall.github.io/GlobeSense/
 
 The build is triggered by GitHub Actions workflow (see `.github/workflows/`).
 

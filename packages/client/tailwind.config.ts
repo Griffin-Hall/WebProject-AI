@@ -133,7 +133,11 @@ export default {
     },
   },
   plugins: [
-    function ({ addUtilities }: { addUtilities: Function }) {
+    function ({
+      addUtilities,
+    }: {
+      addUtilities: (utilities: Record<string, Record<string, string>>) => void;
+    }) {
       addUtilities({
         '.scrollbar-thin': {
           '&::-webkit-scrollbar': {

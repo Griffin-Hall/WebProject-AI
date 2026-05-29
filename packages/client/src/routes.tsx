@@ -57,5 +57,5 @@ export const router: ReturnType<typeof createBrowserRouter> = createBrowserRoute
     ],
   },
 ], {
-  basename: '/WebProject-AI',
+  basename: '/GlobeSense',
 });

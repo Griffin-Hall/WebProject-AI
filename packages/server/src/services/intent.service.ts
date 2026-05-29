@@ -3,7 +3,7 @@ import { intentSchema } from '../validators/search.validator.js';
 import { logger } from '../utils/logger.js';
 import { llmClient } from './llm.client.js';
 import { ollamaClient } from './ollama.client.js';
-import type { ExtractedIntent } from '@voyage-matcher/shared';
+import type { ExtractedIntent } from '@globesense/shared';
 
 /**
  * Extract travel intent from natural language query.

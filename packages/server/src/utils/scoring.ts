@@ -1,5 +1,5 @@
-import { SCORE_WEIGHTS, TEMP_RANGES, BUDGET_THRESHOLDS } from '@voyage-matcher/shared';
-import type { ExtractedIntent, DimensionScores } from '@voyage-matcher/shared';
+import { SCORE_WEIGHTS, TEMP_RANGES, BUDGET_THRESHOLDS } from '@globesense/shared';
+import type { ExtractedIntent, DimensionScores } from '@globesense/shared';
 
 export function computeWeatherScore(
   avgTempC: number | null,

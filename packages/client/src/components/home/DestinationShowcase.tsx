@@ -4,7 +4,7 @@ import { MapPin, ArrowUpRight, Thermometer, DollarSign } from 'lucide-react';
 import { Image } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { CompareToggleButton } from '@/components/compare/CompareToggleButton';
-import type { DestinationSummary } from '@voyage-matcher/shared';
+import type { DestinationSummary } from '@globesense/shared';
 
 interface DestinationShowcaseProps {
   destinations: DestinationSummary[];

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DollarSign, Wallet, Coffee, Crown, Info } from 'lucide-react';
-import type { DestinationCosts } from '@voyage-matcher/shared';
+import type { DestinationCosts } from '@globesense/shared';
 import { cn } from '@/lib/utils';
 
 interface CostBreakdownProps {

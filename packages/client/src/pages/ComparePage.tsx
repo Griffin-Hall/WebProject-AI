@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
 import { ArrowLeft, GitCompareArrows, Globe, Shield, Thermometer, Wallet, X } from 'lucide-react';
-import type { DestinationDetail } from '@voyage-matcher/shared';
+import type { DestinationDetail } from '@globesense/shared';
 import { CompareAIAssistant } from '@/components/compare/CompareAIAssistant';
 import { Badge, Button, Skeleton } from '@/components/ui';
 import { useCompareDestinations } from '@/hooks/useCompareDestinations';

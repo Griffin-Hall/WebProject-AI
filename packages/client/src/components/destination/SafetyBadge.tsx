@@ -1,7 +1,7 @@
 import { Shield, ShieldCheck, ShieldAlert, ShieldX, Info, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import type { DestinationSafety } from '@voyage-matcher/shared';
+import type { DestinationSafety } from '@globesense/shared';
 
 interface SafetyBadgeProps {
   safety: DestinationSafety;

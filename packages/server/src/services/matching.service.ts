@@ -5,7 +5,7 @@ import {
   computeSafetyScore,
   computeCompositeScore,
 } from '../utils/scoring.js';
-import type { ExtractedIntent, MatchResult, DimensionScores } from '@voyage-matcher/shared';
+import type { ExtractedIntent, MatchResult, DimensionScores } from '@globesense/shared';
 import type { Prisma } from '@prisma/client';
 
 type DestinationWithRelations = Prisma.DestinationGetPayload<{

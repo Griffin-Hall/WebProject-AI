@@ -10,6 +10,8 @@ import { env } from './config/env.js';
 export function createApp(): Application {
   const app = express();
 
+  app.set('trust proxy', 1);
+
   app.use(
     cors({
       origin: [

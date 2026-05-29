@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface City {
@@ -95,13 +95,6 @@ export function FlightPath() {
   const midY = (from.y + to.y) / 2 - 10; // Curve upward
 
   const pathD = `M ${from.x} ${from.y} Q ${midX} ${midY} ${to.x} ${to.y}`;
-  const pathLength = useMemo(() => {
-    // Approximate path length for animation
-    const dx = to.x - from.x;
-    const dy = to.y - from.y;
-    return Math.sqrt(dx * dx + dy * dy) * 2;
-  }, [from, to]);
-
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
       <svg

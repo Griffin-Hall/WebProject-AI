@@ -5,7 +5,7 @@ import { MapPin, ImageOff } from 'lucide-react';
 import { Card, Badge } from '@/components/ui';
 import { Image } from '@/components/ui/Image';
 import { CompareToggleButton } from '@/components/compare/CompareToggleButton';
-import type { DestinationDetail, DestinationSummary } from '@voyage-matcher/shared';
+import type { DestinationDetail, DestinationSummary } from '@globesense/shared';
 
 interface DestinationCardProps {
   destination: DestinationDetail | DestinationSummary;

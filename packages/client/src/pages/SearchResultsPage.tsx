@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowLeft, CheckCircle2, AlertCircle } from 'lucide-react';
 import { SearchBar } from '@/components/search/SearchBar';
@@ -10,6 +10,7 @@ import { getAIConfig, PROVIDER_LABELS } from '@/hooks/useAIConfig';
 
 export function SearchResultsPage() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const query = searchParams.get('q') || '';
   const { mutate, data, isPending, isError, error } = useSearch();
 
@@ -31,8 +32,7 @@ export function SearchResultsPage() {
               onSearch={(q) => {
                 const params = new URLSearchParams();
                 params.set('q', q);
-                window.history.pushState(null, '', `/search?${params.toString()}`);
-                mutate(q);
+                navigate(`/search?${params.toString()}`);
               }}
             />
           </div>

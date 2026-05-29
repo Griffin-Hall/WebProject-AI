@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import type { ApiResponse, SearchResponse } from '@voyage-matcher/shared';
+import type { ApiResponse, SearchResponse } from '@globesense/shared';
 import { getAIHeaders } from '@/hooks/useAIConfig';
 
 export function useSearch() {

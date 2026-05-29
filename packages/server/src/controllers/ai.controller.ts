@@ -88,7 +88,7 @@ function buildLLMCall(req: Request) {
 
     // OpenRouter requires extra headers
     if (provider === 'openrouter') {
-      headers['HTTP-Referer'] = 'https://griffin-hall.github.io/WebProject-AI/';
+      headers['HTTP-Referer'] = 'https://griffin-hall.github.io/GlobeSense/';
       headers['X-Title'] = 'GlobeSense Travel AI';
     }
 

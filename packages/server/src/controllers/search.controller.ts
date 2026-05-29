@@ -109,7 +109,7 @@ async function extractIntentWithUserKey(
       'Authorization': `Bearer ${apiKey}`,
     };
     if (provider === 'openrouter') {
-      headers['HTTP-Referer'] = 'https://griffin-hall.github.io/WebProject-AI/';
+      headers['HTTP-Referer'] = 'https://griffin-hall.github.io/GlobeSense/';
       headers['X-Title'] = 'GlobeSense Travel AI';
     }
 

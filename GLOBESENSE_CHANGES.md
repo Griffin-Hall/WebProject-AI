@@ -1,7 +1,7 @@
 # GlobeSense Implementation Summary
 
 ## Overview
-This document summarizes all changes made to the GlobeSense (Voyage Matcher) project to fix destination counts, improve the hero experience, and re-enable AI features.
+This document summarizes all changes made to the GlobeSense project to fix destination counts, improve the hero experience, and re-enable AI features.
 
 ---
 

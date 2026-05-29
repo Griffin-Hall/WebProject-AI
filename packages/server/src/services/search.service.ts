@@ -2,7 +2,7 @@ import { extractIntent } from './intent.service.js';
 import { findAndRankDestinations } from './matching.service.js';
 import { prisma } from '../config/database.js';
 import { logger } from '../utils/logger.js';
-import type { SearchResponse } from '@voyage-matcher/shared';
+import type { SearchResponse } from '@globesense/shared';
 
 export async function search(query: string, userId?: string): Promise<SearchResponse> {
   logger.info({ query }, 'Processing search');

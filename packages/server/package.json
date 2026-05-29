@@ -1,5 +1,5 @@
 {
-  "name": "@voyage-matcher/server",
+  "name": "@globesense/server",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -15,7 +15,7 @@
     "test:ollama": "tsx scripts/test-ollama.ts"
   },
   "dependencies": {
-    "@voyage-matcher/shared": "workspace:*",
+    "@globesense/shared": "workspace:*",
     "@prisma/client": "^6.0.0",
     "express": "^4.21.0",
     "cors": "^2.8.5",

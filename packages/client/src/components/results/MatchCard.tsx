@@ -5,7 +5,7 @@ import { Card, Badge, Image } from '@/components/ui';
 import { ScoreBar } from './ScoreBar';
 import { cn, formatBudget } from '@/lib/utils';
 import { CompareToggleButton } from '@/components/compare/CompareToggleButton';
-import type { MatchResult } from '@voyage-matcher/shared';
+import type { MatchResult } from '@globesense/shared';
 
 interface MatchCardProps {
   match: MatchResult;

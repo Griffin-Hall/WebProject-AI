@@ -1,6 +1,6 @@
 import { MatchCard } from './MatchCard';
 import { AIProcessingIndicator } from '@/components/search/AIProcessingIndicator';
-import type { MatchResult } from '@voyage-matcher/shared';
+import type { MatchResult } from '@globesense/shared';
 
 interface MatchListProps {
   results: MatchResult[];

@@ -1,9 +1,9 @@
 name: Deploy to GitHub Pages
-# Deploys client to GitHub Pages on push to master
+# Deploys client to GitHub Pages on push to main
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -30,12 +30,14 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm --filter shared build
+      - run: pnpm --filter @globesense/shared build
 
       - name: Build client
         env:
-          VITE_API_URL: https://webproject-ai.onrender.com
-        run: pnpm --filter client build
+          # Set repo variable VITE_API_URL for a new Render backend URL.
+          # Falls back to the current production API if not set.
+          VITE_API_URL: ${{ vars.VITE_API_URL || 'https://webproject-ai.onrender.com' }}
+        run: pnpm --filter @globesense/client build
 
       - name: Copy 404 fallback for SPA routing
         run: cp packages/client/dist/index.html packages/client/dist/404.html
