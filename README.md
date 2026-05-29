@@ -55,4 +55,4 @@ corepack pnpm build
 
 ## Deployment
 
-The client is configured for GitHub Pages under `/GlobeSense/`. The backend is designed for Render or another Node host with `DATABASE_URL`, `CLIENT_URL`, and optional `LLM_API_KEY` environment variables.
+The client uses `VITE_BASE_PATH` during the GitHub Pages build, so it can deploy under the current repository path and will automatically move to `/GlobeSense/` after the repository is renamed. The backend is designed for Render or another Node host with `DATABASE_URL`, `CLIENT_URL`, and optional `LLM_API_KEY` environment variables.

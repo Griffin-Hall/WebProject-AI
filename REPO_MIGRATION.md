@@ -8,8 +8,8 @@ This project has been prepared for a new portfolio repo:
 
 ## What Was Updated In Code
 
-- `packages/client/vite.config.ts` base path now uses `/GlobeSense/`
-- `packages/client/src/routes.tsx` router basename now uses `/GlobeSense`
+- `packages/client/vite.config.ts` base path now uses `VITE_BASE_PATH`, falling back to `/GlobeSense/`
+- `packages/client/src/routes.tsx` router basename now follows the Vite base path
 - `.github/workflows/deploy-pages.yml` deploys from `master`
 - `.github/workflows/deploy-pages.yml` supports repo variable `VITE_API_URL`
 - OpenRouter referer headers now point at the new Pages URL

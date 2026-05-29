@@ -57,5 +57,5 @@ export const router: ReturnType<typeof createBrowserRouter> = createBrowserRoute
     ],
   },
 ], {
-  basename: '/GlobeSense',
+  basename: import.meta.env.BASE_URL.replace(/\/$/, ''),
 });
