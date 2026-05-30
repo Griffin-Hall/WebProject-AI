@@ -58,10 +58,10 @@ export function SearchBar({
   }, [isFocused, onActivityChange, query]);
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
+    <form onSubmit={handleSubmit} className="min-w-0 w-full">
       <motion.div
         className={cn(
-          'relative flex items-center rounded-2xl transition-all duration-500',
+          'relative flex min-w-0 items-center rounded-2xl transition-all duration-500',
           isHero
             ? cn(
                 'bg-white/[0.04] backdrop-blur-2xl border shadow-2xl',
@@ -108,7 +108,7 @@ export function SearchBar({
         </AnimatePresence>
 
         {/* Sparkles icon with animation */}
-        <div className="flex items-center pl-5">
+        <div className="flex items-center pl-4 sm:pl-5">
           <motion.div
             animate={{
               rotate: isFocused ? [0, 15, -15, 0] : 0,
@@ -125,10 +125,11 @@ export function SearchBar({
           </motion.div>
         </div>
 
-        <div className="relative flex-1">
+        <div className="relative min-w-0 flex-1">
           <input
             ref={inputRef}
             type="text"
+            aria-label="Describe your ideal trip"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => {
@@ -142,16 +143,16 @@ export function SearchBar({
             placeholder={isHero && !query ? '' : 'Where do you dream of going?'}
             className={cn(
               'w-full bg-transparent border-none outline-none text-white placeholder:text-slate-500',
-              isHero ? 'px-5 py-5 text-xl' : 'px-4 py-3.5 text-base',
+              isHero ? 'px-3 py-5 text-base sm:px-5 sm:text-xl' : 'px-4 py-3.5 text-base',
             )}
           />
           
           {/* Typewriter placeholder for hero */}
           {isHero && !query && !isFocused && (
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-              <span className="text-slate-500">{typedPlaceholder}</span>
+            <div className="pointer-events-none absolute left-3 right-2 top-1/2 flex -translate-y-1/2 items-center sm:left-4">
+              <span className="min-w-0 truncate text-base text-slate-500 sm:text-xl">{typedPlaceholder}</span>
               <motion.span
-                className="inline-block w-[2px] h-6 bg-slate-500 ml-0.5 align-middle"
+                className="ml-0.5 inline-block h-5 w-[2px] shrink-0 bg-slate-500 align-middle sm:h-6"
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
               />
@@ -169,6 +170,7 @@ export function SearchBar({
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.15 }}
               onClick={handleClear}
+              aria-label="Clear search"
               className="p-2 text-slate-500 hover:text-white transition-colors"
             >
               <X className="h-4 w-4" />
@@ -180,13 +182,14 @@ export function SearchBar({
         <div className="pr-2.5">
           <motion.button
             type="submit"
+            aria-label="Search destinations"
             disabled={!query.trim()}
             className={cn(
               'flex items-center justify-center rounded-xl font-semibold transition-all duration-300 focus-visible:outline-none',
               'disabled:opacity-30 disabled:cursor-not-allowed',
               'relative overflow-hidden group',
               isHero
-                ? 'bg-voyage-500 text-slate-50 border border-voyage-300/50 px-7 py-3.5 shadow-[0_0_30px_rgba(26,141,255,0.4)] hover:bg-voyage-400 hover:shadow-[0_0_42px_rgba(26,141,255,0.5)] focus-visible:ring-2 focus-visible:ring-voyage-200/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas'
+                ? 'bg-voyage-500 text-slate-50 border border-voyage-300/50 px-4 py-3.5 shadow-[0_0_30px_rgba(26,141,255,0.4)] hover:bg-voyage-400 hover:shadow-[0_0_42px_rgba(26,141,255,0.5)] focus-visible:ring-2 focus-visible:ring-voyage-200/70 focus-visible:ring-offset-2 focus-visible:ring-offset-canvas sm:px-7'
                 : 'gradient-ai text-slate-50 px-4 py-2.5',
             )}
             whileHover={query.trim() ? { scale: 1.02 } : {}}

@@ -22,47 +22,35 @@ export function FeatureCard({ icon: Icon, title, description, index }: FeatureCa
       }}
     >
       <motion.div 
-        className="glass-card-premium p-6 h-full text-center group relative"
+        className="group relative h-full overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-5 text-left transition-all duration-300 hover:border-white/[0.16] hover:bg-white/[0.04]"
         whileHover={{ y: -4 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Animated gradient border on hover */}
-        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-voyage-500/20 via-aurora/20 to-voyage-500/20 blur-xl" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-voyage-300/45 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <motion.div 
+            className={cn(
+              'relative flex h-12 w-12 items-center justify-center rounded-xl',
+              'border border-white/[0.08] bg-white/[0.04]',
+              'transition-all duration-300 group-hover:border-voyage-500/30 group-hover:bg-voyage-500/[0.08]',
+            )}
+            whileHover={{ rotate: [0, -4, 4, 0], scale: 1.04 }}
+            transition={{ duration: 0.45 }}
+          >
+            <Icon className="relative h-5 w-5 text-slate-300 transition-colors duration-300 group-hover:text-voyage-200" />
+          </motion.div>
+          <span className="font-mono text-xs text-slate-600">0{index + 1}</span>
         </div>
 
-        {/* Icon container with enhanced hover */}
-        <motion.div 
-          className={cn(
-            "relative mt-1 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl mb-4",
-            "bg-white/[0.03] border border-white/[0.08]",
-            "group-hover:border-voyage-500/30 group-hover:bg-voyage-500/5",
-            "transition-all duration-300"
-          )}
-          whileHover={{ rotate: [0, -5, 5, 0], scale: 1.05 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* Glow effect on hover */}
-          <div className="absolute inset-0 rounded-2xl bg-voyage-500/20 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300" />
-          
-          <Icon className={cn(
-            "relative h-7 w-7 transition-all duration-300",
-            "text-slate-400 group-hover:text-voyage-300"
-          )} />
-        </motion.div>
-
-        {/* Title */}
-        <h3 className="font-display font-semibold text-white tracking-tight group-hover:text-voyage-200 transition-colors">
+        <h3 className="font-display text-lg font-semibold tracking-tight text-white transition-colors group-hover:text-voyage-100">
           {title}
         </h3>
 
-        {/* Description */}
-        <p className="mt-2 text-sm text-slate-500 leading-relaxed group-hover:text-slate-400 transition-colors">
+        <p className="mt-3 text-sm leading-relaxed text-slate-500 transition-colors group-hover:text-slate-400">
           {description}
         </p>
 
-        {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 w-0 group-hover:w-16 bg-gradient-to-r from-transparent via-voyage-500/50 to-transparent transition-all duration-500" />
+        <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-voyage-400 via-sand-light to-coral-light transition-all duration-500 group-hover:w-full" />
       </motion.div>
     </motion.div>
   );

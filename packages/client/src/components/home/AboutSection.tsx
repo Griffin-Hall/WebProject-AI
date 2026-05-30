@@ -37,7 +37,7 @@ const techCards = [
 ];
 
 const stats = [
-  { value: 150, suffix: '+', label: 'Destinations' },
+  { value: 255, suffix: '+', label: 'Destinations' },
   { value: 4, suffix: '', label: 'AI Dimensions' },
   { value: 12, suffix: '', label: 'Months Weather Data' },
   { value: 3, suffix: '', label: 'Budget Tiers' },
@@ -52,8 +52,8 @@ export function AboutSection() {
       <div className="container-narrow">
         <SectionHeading
           badge="Under the Hood"
-          title="Built with Intelligence"
-          subtitle="A full-stack portfolio project showcasing AI integration, modern web architecture, and data-driven UX"
+          title="A portfolio project with product depth"
+          subtitle="The experience is designed to show AI orchestration, full-stack TypeScript, database-backed recommendations, and practical UX judgment."
         />
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, ArrowUpRight, Thermometer, DollarSign } from 'lucide-react';
+import { MapPin, ArrowUpRight, Shield, DollarSign } from 'lucide-react';
 import { Image } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { CompareToggleButton } from '@/components/compare/CompareToggleButton';
@@ -125,7 +125,7 @@ export function DestinationShowcase({ destinations }: DestinationShowcaseProps) 
                         )}
                         {dest.safety && (
                           <div className="flex items-center gap-1 text-xs text-slate-300 bg-white/[0.08] backdrop-blur-sm rounded-full px-2.5 py-1">
-                            <Thermometer className="h-3 w-3 text-amber-400" />
+                            <Shield className="h-3 w-3 text-voyage-300" />
                             Safety: {dest.safety.safetyScore}
                           </div>
                         )}

@@ -16,6 +16,8 @@ interface GlobeLazyProps {
   onGlobeClick?: () => void;
   /** Show loading state */
   showLoading?: boolean;
+  /** Load immediately instead of waiting for intersection */
+  eager?: boolean;
 }
 
 /**
@@ -31,14 +33,16 @@ export function GlobeLazy({
   interactive = true,
   onGlobeClick,
   showLoading = true,
+  eager = false,
 }: GlobeLazyProps) {
   const globeRef = useRef<GlobeRef>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(eager);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Intersection Observer to lazy load when in viewport
   useEffect(() => {
+    if (eager) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -54,7 +58,7 @@ export function GlobeLazy({
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [eager]);
 
   // Loading placeholder
   const LoadingPlaceholder = () => (
@@ -125,7 +129,6 @@ export function GlobeLazy({
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            onLoad={() => setIsLoaded(true)}
           >
             <Globe
               ref={globeRef}
