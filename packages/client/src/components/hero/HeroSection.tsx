@@ -204,7 +204,6 @@ export function HeroSection() {
                 <motion.div
                   key={chip.label}
                   variants={chipVariants}
-                  whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
                   whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
                 >
                   <Link

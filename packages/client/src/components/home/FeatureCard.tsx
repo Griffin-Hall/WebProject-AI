@@ -23,8 +23,6 @@ export function FeatureCard({ icon: Icon, title, description, index }: FeatureCa
     >
       <motion.div 
         className="group relative h-full overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-5 text-left transition-all duration-300 hover:border-white/[0.16] hover:bg-white/[0.04]"
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.3 }}
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-voyage-300/45 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <div className="mb-6 flex items-center justify-between gap-4">
