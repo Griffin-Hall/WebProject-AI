@@ -97,6 +97,17 @@ Rules:
 
 User query: "{query}"`;
 
+function createVerificationLinks(city: string, country: string): string {
+  const location = encodeURIComponent(`${city}, ${country}`);
+  const countryQuery = encodeURIComponent(country);
+
+  return [
+    `Live weather: https://www.timeanddate.com/weather/?query=${location}`,
+    `Travel advisory search: https://travel.state.gov/content/travel/en/search.html?search_input=${countryQuery}`,
+    'Visa and entry guidance: https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages.html',
+  ].join('\n');
+}
+
 /**
  * Chat Response Prompt Template
  * 
@@ -138,6 +149,8 @@ export function createDestinationAssistantPrompt(
   },
   userQuestion: string
 ): string {
+  const verificationLinks = createVerificationLinks(destinationName, destinationData.country);
+
   return `You are GlobeSense, an expert AI travel planner and destination guide.
 
 Your role:
@@ -151,6 +164,9 @@ Destination Details:
 Tags: ${destinationData.tags.join(', ')}
 Safety Score: ${destinationData.safetyScore ?? 'N/A'}/100
 Daily Budget (Mid): $${destinationData.dailyBudgetMid ?? 'N/A'}
+
+Verification Links:
+${verificationLinks}
 
 The user is asking about this specific destination.
 Your job is to give helpful, concrete, travel-ready answers based on:
@@ -195,6 +211,7 @@ If safety score is low: briefly note caution and suggest safer behaviors/areas.
 If the user's request conflicts with reality (e.g., skiing in a flat tropical city), gently explain and suggest the closest realistic alternatives.
 Avoid fabricating very specific obscure facts like random restaurant names and exact addresses if you are not reasonably confident.
 It is fine to say "look for seafood stalls along the main beach promenade" rather than inventing "Joe's Fish Shack at 123 Beach Road".
+You cannot browse live pages in this request. For current weather, advisories, visa rules, entry requirements, closures, or prices, clearly say the user should verify and include the most relevant Verification Link.
 
 If the question is too vague, you may ask one brief clarifying question at the end.
 
@@ -245,6 +262,12 @@ export function createCompareAssistantPrompt(
   Monthly temps: ${monthSnapshot || 'N/A'}`;
     })
     .join('\n');
+  const verificationBlock = destinations
+    .map((destination) => {
+      return `- ${destination.city}, ${destination.country}
+  ${createVerificationLinks(destination.city, destination.country).replace(/\n/g, '\n  ')}`;
+    })
+    .join('\n');
 
   return `You are GlobeSense, an expert travel comparison assistant.
 
@@ -254,12 +277,16 @@ Use only the provided structured data for numeric comparisons.
 Comparison candidates:
 ${destinationBlock}
 
+Verification links:
+${verificationBlock}
+
 Response requirements:
 - Answer the user's direct question first.
 - When applicable, rank destinations from best to worst for the asked criteria.
 - Explicitly mention tradeoffs (cost vs weather vs safety).
 - If a question references a month, use monthly temperature context in your reasoning.
 - If data is missing, say what is missing instead of guessing.
+- You cannot browse live pages in this request. If the user asks about current weather, advisories, visas, entry rules, closures, or exact prices, say that it must be verified and include the relevant verification link.
 - Keep the response concise and easy to scan.
 - Use Markdown bullets and short sections.
 

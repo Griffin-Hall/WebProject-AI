@@ -20,6 +20,12 @@ export interface DimensionScores {
   vibe: number;
 }
 
+export interface MatchSourceLink {
+  label: string;
+  url: string;
+  kind: 'weather' | 'advisory' | 'visa' | 'map';
+}
+
 export interface MatchResult {
   destinationId: string;
   city: string;
@@ -33,6 +39,8 @@ export interface MatchResult {
   dailyBudgetMid: number;
   safetyScore: number;
   avgTempC: number | null;
+  matchReasons: string[];
+  sourceLinks: MatchSourceLink[];
 }
 
 export interface SearchResponse {

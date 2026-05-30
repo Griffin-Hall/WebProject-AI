@@ -5,10 +5,10 @@ GlobeSense is an AI-powered travel discovery app that turns natural language tri
 ## Highlights
 
 - Natural language destination search with hosted LLM, local Ollama, and keyword fallback modes.
-- Ranked match results across weather, budget, safety, and trip style fit.
+- Ranked match results across weather, budget, safety, and trip style fit, with match reasons and live verification links.
 - Destination detail pages with climate charts, cost breakdowns, safety context, and AI city chat.
 - Multi-destination comparison flow with an AI comparison assistant.
-- Bring-your-own-key AI configuration for OpenAI, Anthropic, Gemini, Kimi, and OpenRouter.
+- Server-side `LLM_API_KEY` support with optional bring-your-own-key overrides for OpenAI, Anthropic, Gemini, Kimi, and OpenRouter.
 
 ## Stack
 
@@ -51,6 +51,7 @@ API: `http://localhost:3001`
 ```bash
 corepack pnpm -r typecheck
 corepack pnpm build
+corepack pnpm eval:ai
 ```
 
 ## Deployment

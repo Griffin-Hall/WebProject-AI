@@ -6,13 +6,17 @@ import { SearchBar } from '@/components/search/SearchBar';
 import { MatchList } from '@/components/results/MatchList';
 import { Badge, Button } from '@/components/ui';
 import { useSearch } from '@/hooks/useSearch';
-import { getAIConfig, PROVIDER_LABELS } from '@/hooks/useAIConfig';
+import { PROVIDER_LABELS, useAIConfig } from '@/hooks/useAIConfig';
+import { hasServerHostedAI, useAIStatus } from '@/hooks/useAIStatus';
 
 export function SearchResultsPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const query = searchParams.get('q') || '';
   const { mutate, data, isPending, isError, error } = useSearch();
+  const { config, isConfigured } = useAIConfig();
+  const { data: aiStatus } = useAIStatus();
+  const serverHostedAI = hasServerHostedAI(aiStatus);
 
   useEffect(() => {
     if (query) {
@@ -43,7 +47,7 @@ export function SearchResultsPage() {
         {/* AI Status */}
         <div className="mb-6">
           {(() => {
-            const cfg = getAIConfig();
+            const cfg = isConfigured && config ? config : null;
             if (cfg) {
               return (
                 <motion.div
@@ -57,6 +61,32 @@ export function SearchResultsPage() {
                 </motion.div>
               );
             }
+            if (serverHostedAI) {
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium backdrop-blur-sm border bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                >
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  <span>Server AI Powered</span>
+                  <span className="text-slate-500 ml-1">via GlobeSense ({aiStatus?.model ?? 'server model'})</span>
+                </motion.div>
+              );
+            }
+            if (aiStatus?.status === 'available' && aiStatus.primary === 'ollama') {
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium backdrop-blur-sm border bg-voyage-500/10 text-voyage-300 border-voyage-500/20"
+                >
+                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  <span>Local AI Powered</span>
+                  <span className="text-slate-500 ml-1">via Ollama ({aiStatus.model})</span>
+                </motion.div>
+              );
+            }
             return (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -64,7 +94,7 @@ export function SearchResultsPage() {
                 className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium backdrop-blur-sm border bg-amber-500/10 text-amber-400 border-amber-500/20"
               >
                 <AlertCircle className="h-3.5 w-3.5" />
-                <span>No AI Key</span>
+                <span>Keyword Fallback</span>
                 <span className="text-slate-500 ml-1">• Using keyword fallback</span>
               </motion.div>
             );

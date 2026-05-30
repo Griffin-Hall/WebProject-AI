@@ -1,6 +1,7 @@
 import { INTENT_EXTRACTION_PROMPT, GLOBAL_SYSTEM_PROMPT } from '../utils/prompt-templates.js';
 import { intentSchema } from '../validators/search.validator.js';
 import { logger } from '../utils/logger.js';
+import { parseJSONFromLLM } from './ai-provider.service.js';
 import { llmClient } from './llm.client.js';
 import { ollamaClient } from './ollama.client.js';
 import type { ExtractedIntent } from '@globesense/shared';
@@ -34,7 +35,7 @@ export async function extractIntent(query: string): Promise<ExtractedIntent> {
         response_format: { type: 'json_object' },
       });
 
-      const parsed = JSON.parse(response);
+      const parsed = parseJSONFromLLM(response);
       const validated = intentSchema.parse(parsed);
 
       methodUsed = 'hosted-llm';
@@ -71,7 +72,7 @@ export async function extractIntent(query: string): Promise<ExtractedIntent> {
         max_tokens: 500,
       });
 
-      const parsed = JSON.parse(response);
+      const parsed = parseJSONFromLLM(response);
       const validated = intentSchema.parse(parsed);
 
       methodUsed = 'ollama';

@@ -4,6 +4,7 @@ import routes from './routes/index.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { generalLimiter } from './middleware/rateLimiter.js';
 import { ollamaClient } from './services/ollama.client.js';
+import { getServerAIStatus } from './services/ai-provider.service.js';
 import { seedDatabase } from './services/seed.service.js';
 import { env } from './config/env.js';
 
@@ -97,6 +98,50 @@ export function createApp(): Application {
         message: error instanceof Error ? error.message : 'Unknown error',
       });
     }
+  });
+
+  // AI capability status for the client UI. This does not call paid APIs.
+  app.get('/api/health/ai', async (_req, res) => {
+    const serverAI = getServerAIStatus();
+
+    if (serverAI.configured) {
+      res.json({
+        status: 'available',
+        primary: 'server-llm',
+        provider: serverAI.provider,
+        model: serverAI.model,
+        source: serverAI.source,
+        message: 'Server-hosted AI is configured.',
+      });
+      return;
+    }
+
+    try {
+      const isOllamaAvailable = await ollamaClient.isAvailable();
+
+      if (isOllamaAvailable) {
+        res.json({
+          status: 'available',
+          primary: 'ollama',
+          provider: 'ollama',
+          model: env.OLLAMA_MODEL,
+          source: 'server-local',
+          message: 'Local Ollama intent extraction is available.',
+        });
+        return;
+      }
+    } catch {
+      // Fall through to deterministic fallback status.
+    }
+
+    res.json({
+      status: 'fallback',
+      primary: 'keyword',
+      provider: 'deterministic',
+      model: 'keyword-fallback',
+      source: 'server-fallback',
+      message: 'Using deterministic keyword extraction until LLM_API_KEY or Ollama is available.',
+    });
   });
 
   app.use('/api', routes);

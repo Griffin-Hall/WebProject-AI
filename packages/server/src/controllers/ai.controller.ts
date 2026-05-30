@@ -4,11 +4,7 @@ import {
   createCompareAssistantPrompt,
   createDestinationAssistantPrompt,
 } from '../utils/prompt-templates.js';
-
-interface ChatMessage {
-  role: 'system' | 'user' | 'assistant';
-  content: string;
-}
+import { buildLLMCall as buildRoutedLLMCall, extractIntentWithAI } from '../services/ai-provider.service.js';
 
 interface CompareDestinationInput {
   id?: string;
@@ -29,88 +25,8 @@ interface CompareDestinationInput {
   }>;
 }
 
-/**
- * Build an OpenAI-compatible LLM client from per-request headers.
- * Supports OpenAI, Anthropic (via Messages → OpenAI shim), and OpenRouter.
- */
-function buildLLMCall(req: Request) {
-  const apiKey = req.headers['x-ai-api-key'] as string | undefined;
-  const provider = (req.headers['x-ai-provider'] as string) || 'openai';
-  const model = (req.headers['x-ai-model'] as string) || 'gpt-4o-mini';
-
-  if (!apiKey) throw new Error('No API key provided');
-
-  const baseUrls: Record<string, string> = {
-    openai: 'https://api.openai.com/v1',
-    anthropic: 'https://api.anthropic.com/v1',
-    openrouter: 'https://openrouter.ai/api/v1',
-    gemini: 'https://generativelanguage.googleapis.com/v1beta/openai',
-    kimi: 'https://api.moonshot.ai/v1',
-  };
-
-  const baseUrl = baseUrls[provider] || baseUrls.openai;
-
-  return async (messages: ChatMessage[], options: { temperature?: number; max_tokens?: number } = {}): Promise<string> => {
-    if (provider === 'anthropic') {
-      // Anthropic Messages API (different format)
-      const systemMsg = messages.find(m => m.role === 'system');
-      const nonSystemMsgs = messages.filter(m => m.role !== 'system');
-
-      const response = await fetch(`${baseUrl}/messages`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-        },
-        body: JSON.stringify({
-          model,
-          max_tokens: options.max_tokens || 1024,
-          system: systemMsg?.content || '',
-          messages: nonSystemMsgs.map(m => ({ role: m.role, content: m.content })),
-        }),
-      });
-
-      if (!response.ok) {
-        const error = await response.text().catch(() => 'Unknown error');
-        throw new Error(`Anthropic API ${response.status}: ${error}`);
-      }
-
-      const data = await response.json();
-      return data.content?.[0]?.text || '';
-    }
-
-    // OpenAI-compatible (OpenAI, OpenRouter, etc.)
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-    };
-
-    // OpenRouter requires extra headers
-    if (provider === 'openrouter') {
-      headers['HTTP-Referer'] = 'https://griffin-hall.github.io/GlobeSense/';
-      headers['X-Title'] = 'GlobeSense Travel AI';
-    }
-
-    const response = await fetch(`${baseUrl}/chat/completions`, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        model,
-        messages,
-        temperature: options.temperature ?? 0.7,
-        max_tokens: options.max_tokens ?? 1024,
-      }),
-    });
-
-    if (!response.ok) {
-      const error = await response.text().catch(() => 'Unknown error');
-      throw new Error(`LLM API ${response.status}: ${error}`);
-    }
-
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content || '';
-  };
+function getAIErrorStatus(error: unknown): number {
+  return error instanceof Error && error.message.includes('No AI provider configured') ? 503 : 502;
 }
 
 /**
@@ -128,7 +44,7 @@ export async function handleAIChat(req: Request, res: Response, next: NextFuncti
       return;
     }
 
-    const callLLM = buildLLMCall(req);
+    const { call: callLLM, metadata } = buildRoutedLLMCall(req);
 
     // Build destination-aware system prompt
     const systemPrompt = createDestinationAssistantPrompt(
@@ -153,8 +69,9 @@ export async function handleAIChat(req: Request, res: Response, next: NextFuncti
 
     logger.info({
       msg: 'AI chat response generated',
-      provider: req.headers['x-ai-provider'],
-      model: req.headers['x-ai-model'],
+      provider: metadata.provider,
+      model: metadata.model,
+      source: metadata.source,
       city,
       messageLength: message.length,
     });
@@ -163,7 +80,7 @@ export async function handleAIChat(req: Request, res: Response, next: NextFuncti
   } catch (error) {
     logger.warn({ error }, 'AI chat failed');
     const msg = error instanceof Error ? error.message : 'AI request failed';
-    res.status(502).json({ success: false, error: msg });
+    res.status(getAIErrorStatus(error)).json({ success: false, error: msg });
   }
 }
 
@@ -212,7 +129,7 @@ export async function handleAICompare(req: Request, res: Response, next: NextFun
         : [],
     }));
 
-    const callLLM = buildLLMCall(req);
+    const { call: callLLM, metadata } = buildRoutedLLMCall(req);
     const systemPrompt = createCompareAssistantPrompt(sanitizedDestinations, message.trim());
 
     const response = await callLLM(
@@ -228,8 +145,9 @@ export async function handleAICompare(req: Request, res: Response, next: NextFun
 
     logger.info({
       msg: 'AI compare response generated',
-      provider: req.headers['x-ai-provider'],
-      model: req.headers['x-ai-model'],
+      provider: metadata.provider,
+      model: metadata.model,
+      source: metadata.source,
       destinationCount: sanitizedDestinations.length,
       messageLength: message.length,
     });
@@ -238,7 +156,7 @@ export async function handleAICompare(req: Request, res: Response, next: NextFun
   } catch (error) {
     logger.warn({ error }, 'AI compare failed');
     const msg = error instanceof Error ? error.message : 'AI compare request failed';
-    res.status(502).json({ success: false, error: msg });
+    res.status(getAIErrorStatus(error)).json({ success: false, error: msg });
   }
 }
 
@@ -249,7 +167,7 @@ export async function handleAICompare(req: Request, res: Response, next: NextFun
  */
 export async function handleAITest(req: Request, res: Response, next: NextFunction) {
   try {
-    const callLLM = buildLLMCall(req);
+    const { call: callLLM, metadata } = buildRoutedLLMCall(req);
 
     const response = await callLLM([
       { role: 'system', content: 'You are a helpful assistant. Respond with exactly: "GlobeSense AI connected successfully!"' },
@@ -261,15 +179,24 @@ export async function handleAITest(req: Request, res: Response, next: NextFuncti
 
     logger.info({
       msg: 'AI API key test successful',
-      provider: req.headers['x-ai-provider'],
-      model: req.headers['x-ai-model'],
+      provider: metadata.provider,
+      model: metadata.model,
+      source: metadata.source,
     });
 
-    res.json({ success: true, message: `Connected! Model responded: "${response.slice(0, 80)}"` });
+    res.json({
+      success: true,
+      message: `Connected! Model responded: "${response.slice(0, 80)}"`,
+      data: {
+        provider: metadata.provider,
+        model: metadata.model,
+        source: metadata.source,
+      },
+    });
   } catch (error) {
     const msg = error instanceof Error ? error.message : 'Connection failed';
     logger.warn({ error }, 'AI API key test failed');
-    res.status(400).json({ success: false, error: msg });
+    res.status(getAIErrorStatus(error)).json({ success: false, error: msg });
   }
 }
 
@@ -287,33 +214,20 @@ export async function handleAIIntent(req: Request, res: Response, next: NextFunc
       return;
     }
 
-    // If user provided an API key, use it for intent extraction
     const apiKey = req.headers['x-ai-api-key'] as string | undefined;
     
     if (apiKey) {
-      const { INTENT_EXTRACTION_PROMPT } = await import('../utils/prompt-templates.js');
-      const callLLM = buildLLMCall(req);
-      const prompt = INTENT_EXTRACTION_PROMPT.replace('{query}', query);
-
-      const response = await callLLM([
-        { role: 'system', content: 'You are a precise intent extraction engine. Return only valid JSON.' },
-        { role: 'user', content: prompt },
-      ], {
-        temperature: 0.2,
-        max_tokens: 500,
-      });
-
-      const { intentSchema } = await import('../validators/search.validator.js');
-      const parsed = JSON.parse(response);
-      const validated = intentSchema.parse(parsed);
+      const { intent, metadata } = await extractIntentWithAI(req, query);
 
       logger.info({
         msg: 'Intent extracted via user API key',
-        provider: req.headers['x-ai-provider'],
+        provider: metadata.provider,
+        model: metadata.model,
+        source: metadata.source,
         query: query.slice(0, 50),
       });
 
-      res.json({ success: true, data: validated });
+      res.json({ success: true, data: intent });
     } else {
       // Fallback: use server-side extraction (env key or keyword fallback)
       const { extractIntent } = await import('../services/intent.service.js');

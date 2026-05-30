@@ -12,7 +12,8 @@
     "db:generate": "prisma generate",
     "db:seed": "tsx prisma/seed.ts",
     "db:push": "prisma db push",
-    "test:ollama": "tsx scripts/test-ollama.ts"
+    "test:ollama": "tsx scripts/test-ollama.ts",
+    "eval:ai": "tsx scripts/eval-ai.ts"
   },
   "dependencies": {
     "@globesense/shared": "workspace:*",

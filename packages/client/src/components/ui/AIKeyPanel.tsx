@@ -3,11 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Key, X, Check, AlertCircle, ChevronDown, Loader2, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAIConfig, DEFAULT_MODELS, PROVIDER_LABELS, type AIConfig } from '@/hooks/useAIConfig';
+import { hasServerHostedAI, useAIStatus } from '@/hooks/useAIStatus';
 
 const PROVIDERS: AIConfig['provider'][] = ['openai', 'anthropic', 'gemini', 'kimi', 'openrouter'];
 
 export function AIKeyButton() {
   const { config, isConfigured } = useAIConfig();
+  const { data: aiStatus } = useAIStatus();
+  const serverHostedAI = hasServerHostedAI(aiStatus);
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +49,11 @@ export function AIKeyButton() {
       >
         <Key className="h-3.5 w-3.5" />
         <span className="hidden sm:inline">
-          {isConfigured ? `AI: ${PROVIDER_LABELS[config!.provider]}` : 'AI API Key'}
+          {isConfigured
+            ? `AI: ${PROVIDER_LABELS[config!.provider]}`
+            : serverHostedAI
+              ? 'Server AI'
+              : 'AI Override'}
         </span>
         {isConfigured && (
           <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -72,6 +79,8 @@ export function AIKeyButton() {
 
 function AIKeyPanel({ onClose }: { onClose: () => void }) {
   const { config, setConfig, clearConfig, isConfigured } = useAIConfig();
+  const { data: aiStatus } = useAIStatus();
+  const serverHostedAI = hasServerHostedAI(aiStatus);
 
   const [apiKey, setApiKey] = useState(config?.apiKey || '');
   const [provider, setProvider] = useState<AIConfig['provider']>(config?.provider || 'openai');
@@ -150,7 +159,7 @@ function AIKeyPanel({ onClose }: { onClose: () => void }) {
       <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.06] bg-white/[0.02]">
         <div className="flex items-center gap-2">
           <Key className="h-4 w-4 text-aurora-light" />
-          <h3 className="text-sm font-semibold text-white">AI Configuration</h3>
+          <h3 className="text-sm font-semibold text-white">Optional AI Override</h3>
         </div>
         <button
           onClick={onClose}
@@ -161,6 +170,19 @@ function AIKeyPanel({ onClose }: { onClose: () => void }) {
       </div>
 
       <div className="p-5 space-y-4">
+        <div
+          className={cn(
+            'rounded-xl border px-3 py-2 text-xs',
+            serverHostedAI
+              ? 'border-emerald-500/20 bg-emerald-500/10 text-emerald-300'
+              : 'border-white/[0.08] bg-white/[0.03] text-slate-400',
+          )}
+        >
+          {serverHostedAI
+            ? `GlobeSense server AI is active (${aiStatus?.model}). Add your own key only if you want to override it.`
+            : 'No server-hosted AI is reported. Add your own key here to enable hosted AI responses in this browser.'}
+        </div>
+
         {/* Provider selector */}
         <div>
           <label className="block text-xs font-medium text-slate-400 mb-1.5">Provider</label>

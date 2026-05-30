@@ -5,6 +5,7 @@ import Markdown from 'react-markdown';
 import type { DestinationDetail } from '@globesense/shared';
 import { cn } from '@/lib/utils';
 import { getAIHeaders, useAIConfig, PROVIDER_LABELS } from '@/hooks/useAIConfig';
+import { hasServerHostedAI, useAIStatus } from '@/hooks/useAIStatus';
 
 interface Message {
   id: string;
@@ -129,6 +130,14 @@ async function requestCompareResponse(destinations: DestinationDetail[], message
 
 export function CompareAIAssistant({ destinations, className }: CompareAIAssistantProps) {
   const { config, isConfigured } = useAIConfig();
+  const { data: aiStatus } = useAIStatus();
+  const serverHostedAI = hasServerHostedAI(aiStatus);
+  const canUseAI = isConfigured || serverHostedAI;
+  const aiLabel = isConfigured && config
+    ? PROVIDER_LABELS[config.provider]
+    : serverHostedAI
+      ? 'GlobeSense AI'
+      : 'Demo Mode';
   const destinationNames = useMemo(
     () => destinations.map((destination) => destination.city).join(', '),
     [destinations],
@@ -178,7 +187,7 @@ export function CompareAIAssistant({ destinations, className }: CompareAIAssista
       setError(null);
 
       try {
-        const responseText = isConfigured
+        const responseText = canUseAI
           ? await requestCompareResponse(destinations, message)
           : buildDemoComparison(destinations, message);
 
@@ -197,7 +206,7 @@ export function CompareAIAssistant({ destinations, className }: CompareAIAssista
         setIsLoading(false);
       }
     },
-    [destinations, input, isConfigured, isLoading],
+    [destinations, input, canUseAI, isLoading],
   );
 
   return (
@@ -215,7 +224,7 @@ export function CompareAIAssistant({ destinations, className }: CompareAIAssista
           </div>
           <div className="hidden sm:inline-flex items-center gap-1 rounded-full border border-white/[0.1] bg-white/[0.03] px-2.5 py-1 text-[11px] text-slate-300">
             <Sparkles className="h-3 w-3 text-voyage-300" />
-            {isConfigured ? PROVIDER_LABELS[config!.provider] : 'Demo Mode'}
+            {aiLabel}
           </div>
         </div>
       </header>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, DollarSign, Shield, Thermometer, Sparkles, ArrowUpRight } from 'lucide-react';
+import { MapPin, DollarSign, Shield, Thermometer, Sparkles, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { Card, Badge, Image } from '@/components/ui';
 import { ScoreBar } from './ScoreBar';
 import { cn, formatBudget } from '@/lib/utils';
@@ -17,6 +17,8 @@ export function MatchCard({ match, rank, index = 0 }: MatchCardProps) {
   const scorePercent = Math.round(match.compositeScore * 100);
   const isTopMatch = rank === 1;
   const isHighMatch = match.compositeScore >= 0.8;
+  const matchReasons = match.matchReasons ?? [];
+  const sourceLinks = match.sourceLinks ?? [];
   const compareCandidate = {
     id: match.destinationId,
     city: match.city,
@@ -140,9 +142,10 @@ export function MatchCard({ match, rank, index = 0 }: MatchCardProps) {
               </motion.div>
             </div>
           </div>
+        </Link>
 
-          {/* Content Section */}
-          <div className="space-y-4 p-5">
+        {/* Content Section */}
+        <div className="space-y-4 p-5">
             {/* Quick stats row */}
             <div className="flex items-start gap-3">
               <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
@@ -173,19 +176,66 @@ export function MatchCard({ match, rank, index = 0 }: MatchCardProps) {
               <ScoreBar label="Vibe" score={match.scores.vibe} color="bg-aurora" />
             </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5 pt-2">
-              {match.tags.slice(0, 4).map((tag) => (
-                <Badge key={tag} variant="default" className="text-[10px]">
-                  {tag}
-                </Badge>
-              ))}
-              {match.tags.length > 4 && (
-                <span className="px-1 text-[10px] text-slate-500">+{match.tags.length - 4}</span>
-              )}
+          {/* Why it matched */}
+          {matchReasons.length > 0 && (
+            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] p-3">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-aurora-light">
+                Why it matched
+              </p>
+              <ul className="space-y-1.5 text-xs leading-relaxed text-slate-300">
+                {matchReasons.slice(0, 3).map((reason) => (
+                  <li key={reason} className="flex gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-aurora/70" />
+                    <span>{reason}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
+          )}
+
+          {/* Source links */}
+          {sourceLinks.length > 0 && (
+            <div>
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                Live checks
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {sourceLinks.slice(0, 4).map((source) => (
+                  <a
+                    key={`${source.kind}-${source.url}`}
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 rounded-lg border border-white/[0.07] bg-white/[0.03] px-2 py-1 text-[10px] text-slate-400 transition-colors hover:border-voyage-400/30 hover:text-white"
+                  >
+                    {source.label}
+                    <ExternalLink className="h-2.5 w-2.5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5 pt-2">
+            {match.tags.slice(0, 4).map((tag) => (
+              <Badge key={tag} variant="default" className="text-[10px]">
+                {tag}
+              </Badge>
+            ))}
+            {match.tags.length > 4 && (
+              <span className="px-1 text-[10px] text-slate-500">+{match.tags.length - 4}</span>
+            )}
           </div>
-        </Link>
+
+          <Link
+            to={`/destinations/${match.destinationId}`}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-voyage-300 transition-colors hover:text-white"
+          >
+            View destination
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+          </div>
       </Card>
     </motion.div>
   );

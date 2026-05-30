@@ -4,6 +4,7 @@ import { Sparkles, Send, Bot, User, Loader2, Lightbulb, Calendar, Utensils, Comp
 import Markdown from 'react-markdown';
 import { cn } from '@/lib/utils';
 import { useAIConfig, getAIHeaders, PROVIDER_LABELS } from '@/hooks/useAIConfig';
+import { hasServerHostedAI, useAIStatus } from '@/hooks/useAIStatus';
 
 interface Message {
   id: string;
@@ -30,7 +31,7 @@ const QUICK_PROMPTS = [
 ];
 
 /**
- * DEMO MODE: Simulated AI Responses (used when no API key is configured)
+ * DEMO MODE: Simulated AI responses when no server or user AI provider is configured.
  */
 async function* generateDemoResponse(city: string, country: string, userMessage: string): AsyncGenerator<string> {
   const responses: Record<string, string> = {
@@ -54,7 +55,7 @@ async function* generateDemoResponse(city: string, country: string, userMessage:
 }
 
 /**
- * REAL AI: Call the server endpoint with user's API key
+ * REAL AI: Call the server endpoint. The server chooses its key or a user override.
  */
 async function callAIChat(
   city: string,
@@ -106,6 +107,14 @@ async function* streamWords(fullText: string): AsyncGenerator<string> {
 
 export function CityAIAssistant({ city, country, continent, tags, safetyScore, dailyBudgetMid, className }: CityAIAssistantProps) {
   const { config, isConfigured } = useAIConfig();
+  const { data: aiStatus } = useAIStatus();
+  const serverHostedAI = hasServerHostedAI(aiStatus);
+  const canUseAI = isConfigured || serverHostedAI;
+  const aiLabel = isConfigured && config
+    ? PROVIDER_LABELS[config.provider]
+    : serverHostedAI
+      ? 'GlobeSense AI'
+      : 'Demo Mode';
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
@@ -157,7 +166,7 @@ export function CityAIAssistant({ city, country, continent, tags, safetyScore, d
     }]);
 
     try {
-      if (isConfigured) {
+      if (canUseAI) {
         // Real AI call
         const fullResponse = await callAIChat(city, country, text, {
           continent, tags, safetyScore, dailyBudgetMid,
@@ -195,7 +204,7 @@ export function CityAIAssistant({ city, country, continent, tags, safetyScore, d
     } finally {
       setIsLoading(false);
     }
-  }, [input, isLoading, isConfigured, city, country, continent, tags, safetyScore, dailyBudgetMid]);
+  }, [input, isLoading, canUseAI, city, country, continent, tags, safetyScore, dailyBudgetMid]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -218,7 +227,7 @@ export function CityAIAssistant({ city, country, continent, tags, safetyScore, d
               className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-canvas"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              style={{ backgroundColor: isConfigured ? '#10b981' : '#f59e0b' }}
+              style={{ backgroundColor: canUseAI ? '#10b981' : '#f59e0b' }}
             />
           </div>
           <div className="flex-1 min-w-0">
@@ -229,11 +238,11 @@ export function CityAIAssistant({ city, country, continent, tags, safetyScore, d
             <p className="text-xs text-slate-400 truncate">Ask me anything about {city}, {country}</p>
           </div>
           {/* Status badge */}
-          {isConfigured ? (
+          {canUseAI ? (
             <div className="hidden sm:flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
               <Sparkles className="h-3 w-3 text-emerald-400" />
               <span className="text-[10px] text-emerald-400 font-medium">
-                {PROVIDER_LABELS[config!.provider]}
+                {aiLabel}
               </span>
             </div>
           ) : (
@@ -410,6 +419,10 @@ export function CityAIAssistant({ city, country, continent, tags, safetyScore, d
           {isConfigured ? (
             <span className="text-[10px] text-emerald-500/60">
               Powered by {PROVIDER_LABELS[config!.provider]} · {config!.model}
+            </span>
+          ) : serverHostedAI ? (
+            <span className="text-[10px] text-emerald-500/60">
+              Powered by GlobeSense server AI
             </span>
           ) : (
             <>
